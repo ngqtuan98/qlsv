@@ -1,0 +1,73 @@
+﻿<Window x:Class="QLSV.MainWindow"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="{DynamicResource MaterialDesignPaper}"
+     FontFamily="{DynamicResource MaterialDesignFont}"
+        
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QLSV"
+        mc:Ignorable="d"
+        Title="Sinh Viên" Height="672" Width="988.237">
+    <Grid Margin="0,0,2,-2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="149*"></RowDefinition>
+            <RowDefinition Height="23*"/>
+            <RowDefinition Height="172*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label x:Name="label" Content="DANH SÁCH SINH VIÊN" HorizontalAlignment="Left" Margin="255,0,0,0" VerticalAlignment="Top" FontSize="18" Height="34" Width="199" />
+        <Label x:Name="label1" Content="STT:" HorizontalAlignment="Left" Margin="25,44,0,0" VerticalAlignment="Top" FontSize="11" Height="25" Width="41"/>
+        <TextBox Visibility="Hidden" CharacterCasing="Upper" Text="{Binding SelectedItem.MSSV, ElementName=lsvDSSV, Mode=TwoWay}" x:Name="tbMSSV" HorizontalAlignment="Left" Height="31" Margin="85,28,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="155" />
+        <TextBox IsReadOnly="True" CharacterCasing="Upper" Text="{Binding SelectedItem.Id, ElementName=lsvDSSV, Mode=TwoWay}" x:Name="tbId" HorizontalAlignment="Left" Height="31" Margin="85,28,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="155" />
+        <Label x:Name="label2" Content="Họ Tên:" HorizontalAlignment="Left" Margin="25,88,0,0" VerticalAlignment="Top"  FontSize="11" Height="25" Width="46" RenderTransformOrigin="0.489,0.56"/>
+        <TextBox CharacterCasing="Upper" Text="{Binding SelectedItem.ten, ElementName=lsvDSSV, Mode=TwoWay}" x:Name="tbTen" HorizontalAlignment="Left" Height="32" Margin="85,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
+        <Label x:Name="label3" Content="Lớp:" HorizontalAlignment="Left" Margin="25,134,0,0" VerticalAlignment="Top"  FontSize="11" Height="25" Width="31"/>
+        <Button x:Name="btnLop" Content="+" HorizontalAlignment="Left" Height="20" Margin="220,129,0,0" VerticalAlignment="Top" Width="20" Click="btnLop_Click"/>
+        <ComboBox Text="{Binding SelectedItem.Lop.tenLop, ElementName=lsvDSSV, Mode=TwoWay}" Name="cbLop" HorizontalAlignment="Left" Margin="85,122,0,0" VerticalAlignment="Top" Width="126" Height="27"/>
+        <Label x:Name="label4" Content="Ngành:" HorizontalAlignment="Left" Margin="25,184,0,0" VerticalAlignment="Top"  FontSize="11" Height="25" Width="45"/>
+        <ComboBox  Text="{Binding SelectedItem.Nganh.tenNganh, ElementName=lsvDSSV, Mode=TwoWay}" Name="cbNganh" HorizontalAlignment="Left" Margin="85,173,0,0" VerticalAlignment="Top" Width="126" Height="26"/>
+        <Button x:Name="btnNganh" Content="+" HorizontalAlignment="Left" Height="20" Margin="220,179,0,0" VerticalAlignment="Top" Width="20" Click="btnNganh_Click"/>
+        <Label x:Name="label5" Content="Ngày Sinh:" HorizontalAlignment="Left" Margin="258,41,0,0" VerticalAlignment="Top"  FontSize="11" Height="25" Width="62"/>
+        <DatePicker  Text="{Binding SelectedItem.ngaySinh, ElementName=lsvDSSV, Mode=TwoWay}" x:Name="tbNgaySinh" HorizontalAlignment="Left" Height="25" Margin="333,34,0,0" VerticalAlignment="Top" Width="148"/>
+        <Label x:Name="label6" Content="Giới Tính:" HorizontalAlignment="Left" Margin="255,88,0,0" VerticalAlignment="Top"  FontSize="11" Height="25" Width="56"/>
+        <TextBox CharacterCasing="Upper"  Text="{Binding SelectedItem.gioiTinh, ElementName=lsvDSSV, Mode=TwoWay}" x:Name="tbGioiTinh" HorizontalAlignment="Left" Height="44" Margin="336,59,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="145"/>
+        <Label x:Name="label7" Content="Trường THPT:" HorizontalAlignment="Left" Margin="255,134,0,0" VerticalAlignment="Top"  FontSize="11" Height="25" Width="75"/>
+        <TextBox CharacterCasing="Upper" Text="{Binding SelectedItem.truongTHPT, ElementName=lsvDSSV, Mode=TwoWay}" x:Name="tbTHPT" HorizontalAlignment="Left" Height="41" Margin="336,108,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="145"/>
+        <Label x:Name="label8" Content="Điểm Thi:" HorizontalAlignment="Left" Margin="518,38,0,0" VerticalAlignment="Top"  FontSize="11" Height="25" Width="56" RenderTransformOrigin="0.464,0.707"/>
+        <TextBox  Text="{Binding SelectedItem.diemThi, ElementName=lsvDSSV, Mode=TwoWay}" x:Name="tbDT" HorizontalAlignment="Left" Height="31" Margin="595,22,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="72"/>
+        <Label x:Name="label9" Content="Điểm Chuẩn:" HorizontalAlignment="Left" Margin="518,86,0,0" VerticalAlignment="Top"  FontSize="11" Height="25" Width="72"/>
+        <TextBox  Text="{Binding SelectedItem.diemChuan, ElementName=lsvDSSV, Mode=TwoWay}" x:Name="tbDC" HorizontalAlignment="Left" Height="32" Margin="595,71,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="72"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.RowSpan="2" Height="364" VerticalAlignment="Top">
+            <DataGrid x:Name="lsvDSSV" SelectionChanged="lsvDSSV_SelectionChanged"  AutoGenerateColumns="False" IsReadOnly="True" Height="364" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Visibility="Hidden" Binding="{Binding Id}" Header="ID" Width="AUTO" ></DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding MSSV}" Header="MSSV" Width="AUTO" ></DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding ten}" Header="Họ Tên" Width="AUTO"></DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding ngaySinh, StringFormat={}{0:MM/dd/yyyy}}" Header="Ngày Sinh" Width="AUTO"></DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Lop.tenLop}" Header="Lớp" Width="AUTO"></DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Nganh.tenNganh}" Header="Ngành" Width="AUTO"></DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding gioiTinh}" Header="Giới Tính" Width="AUTO"></DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding truongTHPT}" Header="Trường THPT" Width="AUTO"></DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding diemThi}" Header="Điểm Thi" Width="AUTO"></DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding diemChuan}" Header="Điểm Chuẩn" Width="AUTO"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+        <Button x:Name="btnAdd" Content="Thêm" HorizontalAlignment="Left" Margin="258,215,0,0" VerticalAlignment="Top" Width="75" Height="25" Click="btnAdd_Click"/>
+        <Button x:Name="btnUpdate" Content="Cập Nhật" HorizontalAlignment="Left" Margin="356,215,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="-0.187,0.2" Height="25" Click="btnUpdate_Click"/>
+        <Button x:Name="btnDel" Content="Xóa" HorizontalAlignment="Left" Margin="487,215,0,0" VerticalAlignment="Top" Width="75" Height="25" Click="btnDel_Click"/>
+        <Button x:Name="btnRefresh" Content="Refresh" HorizontalAlignment="Left" Margin="585,215,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="-0.187,0.2" Height="25" Click="btnRefresh_Click"/>
+        <GroupBox Header="Màn hình" HorizontalAlignment="Left" Height="248" Margin="753,21,0,0" VerticalAlignment="Top" Width="198"/>
+        <Button x:Name="btnBaoCao" Content="Báo cáo" HorizontalAlignment="Left" Margin="767,69,0,0" VerticalAlignment="Top" Width="170" Height="25" Click="btnBaoCao_Click" />
+        <Button x:Name="btnDG" Content="Đánh giá" HorizontalAlignment="Left" Margin="767,112,0,0" VerticalAlignment="Top" Width="170" Height="25" Click="btnDG_Click" />
+        <Button x:Name="btnCT" Content="Phân công" HorizontalAlignment="Left" Margin="767,151,0,0" VerticalAlignment="Top" Width="170" Height="25" Click="btnCT_Click"/>
+        <Button x:Name="btnMH" Content="Môn học" HorizontalAlignment="Left" Margin="767,190,0,0" VerticalAlignment="Top" Width="170" Height="25" Click="btnMH_Click" />
+        <Button x:Name="btnGV" Content="Giảng viên" HorizontalAlignment="Left" Margin="767,232,0,0" VerticalAlignment="Top" Width="170" Height="25" Click="btnGV_Click" />
+    </Grid>
+</Window>

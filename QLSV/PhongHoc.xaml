@@ -1,0 +1,29 @@
+﻿<Window x:Class="QLSV.PhongHoc"
+        
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QLSV"
+        mc:Ignorable="d"
+         Title="Lớp" Height="397.598" Width="335.19">
+    <Grid Margin="0,0,2,7">
+
+        <Label x:Name="label1" Content="Lớp:" HorizontalAlignment="Left" Margin="67,49,0,0" VerticalAlignment="Top" FontSize="11" Height="25" Width="40" RenderTransformOrigin="0.5,0.5">
+
+        </Label>
+        <TextBox Text="{Binding SelectedItem.tenLop, ElementName=lsvLop, Mode=TwoWay}" x:Name="tbLop" HorizontalAlignment="Left" Height="40" Margin="115,32,0,0" VerticalAlignment="Top" Width="100" />
+
+        <DataGrid x:Name="lsvLop" SelectionChanged="lsvLop_SelectionChanged" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,133,0,0" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding tenLop}" Header="Lớp" Width="250"></DataGridTextColumn>
+                <DataGridTextColumn Visibility="Hidden" Binding="{Binding Id}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnAdd" Content="Thêm" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" Width="74" Height="30" Click="button_Click"/>
+        <Button x:Name="btnDel" Content="Xóa" HorizontalAlignment="Left" Margin="115,88,0,0" VerticalAlignment="Top" Width="76" Height="30" Click="btnDel_Click"/>
+        <Button x:Name="btnUpdate" Content="Cập Nhật" HorizontalAlignment="Left" Margin="217,88,0,0" VerticalAlignment="Top" Width="98" Height="30" Click="btnUpdate_Click"/>
+        <Label x:Name="label" Content="DANH SÁCH LỚP" HorizontalAlignment="Left" Margin="83,10,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <TextBox Visibility="Hidden" x:Name="txtIDLop" Text="{Binding SelectedItem.Id, ElementName=lsvLop, Mode=TwoWay}"  HorizontalAlignment="Left" Height="20" Margin="235,52,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="51" />
+    </Grid>
+</Window>

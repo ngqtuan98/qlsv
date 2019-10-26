@@ -1,0 +1,23 @@
+﻿<Window x:Class="QLSV.DanhGiaSV"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QLSV"
+        mc:Ignorable="d"
+        Title="DanhGia" Height="444.034" Width="583.658">
+    <Grid>
+        <DataGrid x:Name="DanhGia" AutoGenerateColumns="False" IsReadOnly="True" Margin="37,169,36,10" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="50"></DataGridTextColumn>
+                <DataGridTextColumn Header="Loại Đánh Giá" Width="190" ></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="button" Content="Thêm" HorizontalAlignment="Left" Margin="131,113,0,0" VerticalAlignment="Top" Width="75" Height="30" />
+        <Button x:Name="button1" Content="Xóa" HorizontalAlignment="Left" Margin="235,113,0,0" VerticalAlignment="Top" Width="75" Height="30"/>
+        <Button x:Name="button2" Content="Cập Nhật" HorizontalAlignment="Left" Margin="340,113,0,0" VerticalAlignment="Top" Width="100" Height="30"/>
+        <Label x:Name="label" Content="LOẠI ĐÁNH GIÁ" HorizontalAlignment="Left" Margin="199,10,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label x:Name="label1" Content="Đánh Giá:" HorizontalAlignment="Left" Margin="129,66,0,0" VerticalAlignment="Top" FontSize="11" Height="25" Width="77"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="30" Margin="222,61,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="128" />
+    </Grid>
+</Window>
