@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QLSV"
         mc:Ignorable="d"
-         Title="Ngành" Height="479.964" Width="571.719">
+         Title="Ngành" Height="479.964" Width="571.719" WindowStartupLocation="CenterScreen">
     <Grid >
 
         <Label Content="Nghành:" HorizontalAlignment="Left" Margin="18,52,0,0" VerticalAlignment="Top" FontSize="11" Height="25" Width="54" RenderTransformOrigin="0.5,0.5">
@@ -23,7 +23,7 @@
         <Button x:Name="btnAdd" Content="Thêm" HorizontalAlignment="Left" Margin="44,123,0,0" VerticalAlignment="Top" Width="75" Height="30" Click="btnAdd_Click" />
         <Button x:Name="btnDel" Content="Xóa" HorizontalAlignment="Left" Margin="148,123,0,0" VerticalAlignment="Top" Width="75" Height="30" Click="btnDel_Click"/>
         <Button x:Name="btnUpdate" Content="Cập Nhật" HorizontalAlignment="Left" Margin="251,123,0,0" VerticalAlignment="Top" Width="106" Height="30" Click="btnUpdate_Click"/>
-        <Label x:Name="label" Content="NGÀNH HỌC" HorizontalAlignment="Left" Margin="127,10,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label x:Name="label" Content="NGÀNH HỌC" HorizontalAlignment="Left" Margin="214,10,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Button x:Name="btnHome" Content="Home" HorizontalAlignment="Left" Margin="381,123,0,0" VerticalAlignment="Top" Width="74" Height="30" Click="BtnHome_Click" />
     </Grid>
 </Window>
