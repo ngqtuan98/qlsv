@@ -90,5 +90,12 @@ namespace QLSV
         {
 
         }
+
+        private void BtnHome_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mwd = new MainWindow();
+            Close();
+            mwd.Show();
+        }
     }
 }
