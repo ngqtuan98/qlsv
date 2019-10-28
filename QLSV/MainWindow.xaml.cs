@@ -271,11 +271,20 @@ namespace QLSV
         public void Window_Loaded(object sender, RoutedEventArgs e)
         {
             int stt;
+
             using (var db = new CSDLQlsv())//connect database
             {
+                try
+                {
+                    var dssv = db.SinhViens.OrderByDescending(sv => sv.Id).ToList().FirstOrDefault();
+                    stt = dssv.Id;
 
-                var dssv = db.SinhViens.OrderByDescending(sv => sv.Id).ToList().FirstOrDefault();
-                stt = dssv.Id;
+                }
+                catch (Exception)
+                {
+                    stt = 0;
+                }
+               
 
                 lsvDSSV.ItemsSource = db.SinhViens.ToList();
                 lsvDSSV.Items.Refresh();
