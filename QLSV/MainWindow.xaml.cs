@@ -44,7 +44,7 @@ namespace QLSV
         private void btnNganh_Click(object sender, RoutedEventArgs e)
         {
             NganhHoc nh = new NganhHoc();
-
+            Close();
             nh.Show();
         }
 
@@ -55,48 +55,56 @@ namespace QLSV
             int idcbLop = int.Parse(cbLop.SelectedValue.ToString());
             int idcbNganh = int.Parse(cbNganh.SelectedValue.ToString());
 
-            if (checkdiemthi() && checkdiemchuan() == true)
+            try
             {
-                using (var db = new CSDLQlsv())//connect database
+                if (checkdiemthi() && checkdiemchuan() == true)
                 {
-
-                    try
+                    using (var db = new CSDLQlsv())//connect database
                     {
-                        var dssv = db.SinhViens.OrderByDescending(sv => sv.Id).ToList().FirstOrDefault();
-                        stt = dssv.Id;
 
+                        try
+                        {
+                            var dssv = db.SinhViens.OrderByDescending(sv => sv.Id).ToList().FirstOrDefault();
+                            stt = dssv.Id;
+
+                        }
+                        catch (Exception)
+                        {
+                            stt = 0;
+                        }
+                        var asv = new SinhVien
+                        {
+
+                            ten = tbTen.Text,
+                            MSSV = "16" + cbNganh.Text + (string.Format("{0:000000}", stt)),
+                            id_Lop = idcbLop,
+                            id_Nganh = idcbNganh,
+                            ngaySinh = DateTime.Parse(tbNgaySinh.Text),
+                            gioiTinh = tbGioiTinh.Text,
+                            truongTHPT = tbTHPT.Text,
+                            diemThi = double.Parse(tbDT.Text),
+                            diemChuan = double.Parse(tbDC.Text),
+                        };
+                        db.SinhViens.Add(asv);
+                        db.SaveChanges();
+                        Clear();
+                        lsvDSSV.ItemsSource = db.SinhViens.ToList();
+                        lsvDSSV.Items.Refresh();
+                        MessageBox.Show("Dữ liệu đã dược cập nhật");
                     }
-                    catch (Exception)
-                    {
-                        stt = 0;
-                    }
-                    var asv = new SinhVien
-                    {
 
-                        ten = tbTen.Text,
-                        MSSV = "16" + cbNganh.Text + (string.Format("{0:000000}", stt)),
-                        id_Lop = idcbLop,
-                        id_Nganh = idcbNganh,
-                        ngaySinh = DateTime.Parse(tbNgaySinh.Text),
-                        gioiTinh = tbGioiTinh.Text,
-                        truongTHPT = tbTHPT.Text,
-                        diemThi = double.Parse(tbDT.Text),
-                        diemChuan = double.Parse(tbDC.Text),
-                    };
-                    db.SinhViens.Add(asv);
-                    db.SaveChanges();
-                    Clear();
-                    lsvDSSV.ItemsSource = db.SinhViens.ToList();
                     lsvDSSV.Items.Refresh();
-                    MessageBox.Show("Dữ liệu đã dược cập nhật");
+                    Page_Loaded();
                 }
-
-                lsvDSSV.Items.Refresh();
-                Page_Loaded();
+                else
+                {
+                    MessageBox.Show("Điểm phải lớn hơn bằng 0 và nhỏ hơn 40", "Lỗi định dạng", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            else
+
+            catch
             {
-                MessageBox.Show("Điểm phải lớn hơn bằng 0 và nhỏ hơn 40", "Some title", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Không nhập đúng theo yêu cầu", "Lỗi định dạng", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
         }
@@ -104,19 +112,25 @@ namespace QLSV
         private void btnDel_Click(object sender, RoutedEventArgs e)
         {
             int idSV = int.Parse(tbId.Text);
-
-            using (var db = new CSDLQlsv())//connect database
+            try
             {
-
-                if (MessageBox.Show("Bạn thực sự muốn xoá Sinh Viên này?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                using (var db = new CSDLQlsv())//connect database
                 {
-                    var rmsv = db.SinhViens.Find(idSV); //Tìm kiếm theo primary key
-                    db.SinhViens.Remove(rmsv);
-                    db.SaveChanges();
-                    Clear();
-                    lsvDSSV.Items.Refresh();
-                    lsvDSSV.ItemsSource = db.SinhViens.ToList();
+
+                    if (MessageBox.Show("Bạn thực sự muốn xoá Sinh Viên này?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        var rmsv = db.SinhViens.Find(idSV); //Tìm kiếm theo primary key
+                        db.SinhViens.Remove(rmsv);
+                        db.SaveChanges();
+                        Clear();
+                        lsvDSSV.Items.Refresh();
+                        lsvDSSV.ItemsSource = db.SinhViens.ToList();
+                    }
                 }
+            }
+            catch
+            {
+                MessageBox.Show("Vui lòng liên hệ với bộ phận kỹ thuật", "Lỗi hệ thống", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -127,34 +141,41 @@ namespace QLSV
             int idcbLop = int.Parse(cbLop.SelectedValue.ToString());
             int idcbNganh = int.Parse(cbNganh.SelectedValue.ToString());
 
-            if (checkdiemthi() && checkdiemchuan() == true)
+            try
             {
-                using (var db = new CSDLQlsv())//connect database
+                if (checkdiemthi() && checkdiemchuan() == true)
                 {
+                    using (var db = new CSDLQlsv())//connect database
+                    {
 
 
-                    var updateSV = db.SinhViens.Find(idSV);//Tìm kiếm theo primary key
-                    updateSV.ten = tbTen.Text;
-                    updateSV.MSSV = tbMSSV.Text;
-                    updateSV.id_Lop = idcbLop;
-                    updateSV.id_Nganh = idcbNganh;
-                    updateSV.ngaySinh = DateTime.Parse(tbNgaySinh.Text);
-                    updateSV.gioiTinh = tbGioiTinh.Text;
-                    updateSV.truongTHPT = tbTHPT.Text;
-                    updateSV.diemThi = double.Parse(tbDT.Text);
-                    updateSV.diemChuan = double.Parse(tbDC.Text);
-                    db.SaveChanges();
-                    Clear();
-                    MessageBox.Show("Dữ liệu đã dược cập nhật");
-                    lsvDSSV.ItemsSource = db.SinhViens.ToList();
+                        var updateSV = db.SinhViens.Find(idSV);//Tìm kiếm theo primary key
+                        updateSV.ten = tbTen.Text;
+                        updateSV.MSSV = tbMSSV.Text;
+                        updateSV.id_Lop = idcbLop;
+                        updateSV.id_Nganh = idcbNganh;
+                        updateSV.ngaySinh = DateTime.Parse(tbNgaySinh.Text);
+                        updateSV.gioiTinh = tbGioiTinh.Text;
+                        updateSV.truongTHPT = tbTHPT.Text;
+                        updateSV.diemThi = double.Parse(tbDT.Text);
+                        updateSV.diemChuan = double.Parse(tbDC.Text);
+                        db.SaveChanges();
+                        Clear();
+                        MessageBox.Show("Dữ liệu đã dược cập nhật");
+                        lsvDSSV.ItemsSource = db.SinhViens.ToList();
+                    }
+
+                    Page_Loaded();
                 }
 
-                Page_Loaded();
+                else
+                {
+                    MessageBox.Show("Điểm phải lớn hơn bằng 0 và nhỏ hơn 40", "Some title", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-
-            else
+            catch
             {
-                MessageBox.Show("Điểm phải lớn hơn bằng 0 và nhỏ hơn 40", "Some title", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Không nhập đúng theo yêu cầu", "Lỗi định dạng", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
         }

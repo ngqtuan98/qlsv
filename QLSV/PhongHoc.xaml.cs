@@ -29,47 +29,69 @@ namespace QLSV
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            using (var db = new CSDLQlsv())//connect database
+            try
             {
-                var lop = new Lop { tenLop = tbLop.Text };
-                db.Lops.Add(lop);
-                db.SaveChanges();
-                Clear();
-                lsvLop.Items.Refresh();
-                lsvLop.ItemsSource = db.Lops.ToList();
-            }
-           
-        }
-
-        private void btnDel_Click(object sender, RoutedEventArgs e)
-        {
-            using (var db = new CSDLQlsv())//connect database
-            {
-                int idLop = int.Parse(txtIDLop.Text);
-                if (MessageBox.Show("Bạn thực sự muốn xoá nhân viên này?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                using (var db = new CSDLQlsv())//connect database
                 {
-                    var rmlop = db.Lops.Find(idLop); //Tìm kiếm theo primary key
-                    db.Lops.Remove(rmlop);
+                    var lop = new Lop { tenLop = tbLop.Text };
+                    db.Lops.Add(lop);
                     db.SaveChanges();
                     Clear();
                     lsvLop.Items.Refresh();
                     lsvLop.ItemsSource = db.Lops.ToList();
                 }
             }
+            catch
+            {
+                MessageBox.Show("Không nhập đúng theo yêu cầu", "Lỗi định dạng", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+        }
+
+        private void btnDel_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (var db = new CSDLQlsv())//connect database
+                {
+                    int idLop = int.Parse(txtIDLop.Text);
+                    if (MessageBox.Show("Bạn thực sự muốn trường này?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        var rmlop = db.Lops.Find(idLop); //Tìm kiếm theo primary key
+                        db.Lops.Remove(rmlop);
+                        db.SaveChanges();
+                        Clear();
+                        lsvLop.Items.Refresh();
+                        lsvLop.ItemsSource = db.Lops.ToList();
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Vui lòng liên hệ với bộ phận kỹ thuật", "Lỗi hệ thống", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             int idLop = int.Parse(txtIDLop.Text);
-            using (var db = new CSDLQlsv())//connect database
+            try
             {
-                var updateLop = db.Lops.Find(idLop);//Tìm kiếm theo primary key
-                updateLop.tenLop = tbLop.Text;
-                db.SaveChanges();
-                Clear();
-                MessageBox.Show("Dữ liệu đã dược cập nhật");
-                lsvLop.ItemsSource = db.Lops.ToList();
+                using (var db = new CSDLQlsv())//connect database
+                {
+                    var updateLop = db.Lops.Find(idLop);//Tìm kiếm theo primary key
+                    updateLop.tenLop = tbLop.Text;
+                    db.SaveChanges();
+                    Clear();
+                    MessageBox.Show("Dữ liệu đã dược cập nhật");
+                    lsvLop.ItemsSource = db.Lops.ToList();
+                }
             }
+            catch
+            {
+                MessageBox.Show("Không nhập đúng theo yêu cầu", "Lỗi định dạng", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
         }
 
         public void displayLop()

@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QLSV"
         mc:Ignorable="d"
-         Title="Ngành" Height="478.548" Width="394.741">
+         Title="Ngành" Height="479.964" Width="571.719">
     <Grid >
 
         <Label Content="Nghành:" HorizontalAlignment="Left" Margin="18,52,0,0" VerticalAlignment="Top" FontSize="11" Height="25" Width="54" RenderTransformOrigin="0.5,0.5">
 
         </Label>
         <TextBox x:Name="tbNganh" CharacterCasing="Upper" Text="{Binding SelectedItem.tenNganh, ElementName=lsvNganh, Mode=TwoWay}" Margin="77,32,89,368" />
-        <TextBox Visibility="Hidden" x:Name="tbIDNganh" CharacterCasing="Upper" Text="{Binding SelectedItem.Id, ElementName=lsvNganh, Mode=TwoWay}" Margin="77,52,89,368" />
+        <TextBox Visibility="Hidden" x:Name="tbIDNganh"  Text="{Binding SelectedItem.Id, ElementName=lsvNganh, Mode=TwoWay}" Margin="77,52,89,368" />
 
         <DataGrid x:Name="lsvNganh" AutoGenerateColumns="False" IsReadOnly="True" Margin="10,171,10,10" >
             <DataGrid.Columns>
@@ -22,7 +22,8 @@
         </DataGrid>
         <Button x:Name="btnAdd" Content="Thêm" HorizontalAlignment="Left" Margin="44,123,0,0" VerticalAlignment="Top" Width="75" Height="30" Click="btnAdd_Click" />
         <Button x:Name="btnDel" Content="Xóa" HorizontalAlignment="Left" Margin="148,123,0,0" VerticalAlignment="Top" Width="75" Height="30" Click="btnDel_Click"/>
-        <Button x:Name="btnUpdate" Content="Cập Nhật" HorizontalAlignment="Left" Margin="251,123,0,0" VerticalAlignment="Top" Width="75" Height="30" Click="btnUpdate_Click"/>
+        <Button x:Name="btnUpdate" Content="Cập Nhật" HorizontalAlignment="Left" Margin="251,123,0,0" VerticalAlignment="Top" Width="106" Height="30" Click="btnUpdate_Click"/>
         <Label x:Name="label" Content="NGÀNH HỌC" HorizontalAlignment="Left" Margin="127,10,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Button x:Name="btnHome" Content="Home" HorizontalAlignment="Left" Margin="381,123,0,0" VerticalAlignment="Top" Width="74" Height="30" Click="BtnHome_Click" />
     </Grid>
 </Window>
