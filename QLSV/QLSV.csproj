@@ -109,7 +109,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GiangVien.xaml">
+    <Page Include="GiangVienDay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -132,8 +132,8 @@
     <Compile Include="BaoCao.xaml.cs">
       <DependentUpon>BaoCao.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GiangVien.xaml.cs">
-      <DependentUpon>GiangVien.xaml</DependentUpon>
+    <Compile Include="GiangVienDay.xaml.cs">
+      <DependentUpon>GiangVienDay.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

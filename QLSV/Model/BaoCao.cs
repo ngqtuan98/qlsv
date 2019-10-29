@@ -15,13 +15,11 @@ namespace QLSV.Model
 
         public int id_MonHoc { get; set; }
 
-        public int id_GiangVien { get; set; }
-
         public int id_DanhGia { get; set; }
 
-        public virtual DanhGia DanhGia { get; set; }
+        public double diemThi { get; set; }
 
-        public virtual GiangVien GiangVien { get; set; }
+        public virtual DanhGia DanhGia { get; set; }
 
         public virtual MonHoc MonHoc { get; set; }
 

@@ -31,19 +31,7 @@ namespace QLSV.Model
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<GiangVien>()
-                .HasMany(e => e.BaoCaos)
-                .WithRequired(e => e.GiangVien)
-                .HasForeignKey(e => e.id_GiangVien)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<GiangVien>()
                 .HasMany(e => e.ChiTietGiangViens)
-                .WithRequired(e => e.GiangVien)
-                .HasForeignKey(e => e.id_GiangVien)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<GiangVien>()
-                .HasMany(e => e.MonHocs)
                 .WithRequired(e => e.GiangVien)
                 .HasForeignKey(e => e.id_GiangVien)
                 .WillCascadeOnDelete(false);

@@ -252,12 +252,7 @@ namespace QLSV
             btnDanhgia.Show();
         }
 
-        private void btnCT_Click(object sender, RoutedEventArgs e)
-        {
-            Phancong pc = new Phancong();
-            pc.Show();
-        }
-
+       
         private void btnMH_Click(object sender, RoutedEventArgs e)
         {
 
@@ -265,7 +260,9 @@ namespace QLSV
 
         private void btnGV_Click(object sender, RoutedEventArgs e)
         {
-
+            GiangVienDay gv = new GiangVienDay();
+            Close();
+            gv.Show();
         }
 
         public void Window_Loaded(object sender, RoutedEventArgs e)
@@ -338,6 +335,13 @@ namespace QLSV
         private void BtnTK_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void BtnPL_Click(object sender, RoutedEventArgs e)
+        {
+            Phancong pc = new Phancong();
+            Close();
+            pc.Show();
         }
     }
 }

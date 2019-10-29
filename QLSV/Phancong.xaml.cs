@@ -24,13 +24,11 @@ namespace QLSV
         public Phancong()
         {
             InitializeComponent();
-            displayLop();
+            
         }
-
         private void button_Click(object sender, RoutedEventArgs e)
         {
 
-       
             try 
             {
                 int idcblop = int.Parse(cbLop.SelectedValue.ToString());
@@ -49,6 +47,9 @@ namespace QLSV
                         lsvPC.Items.Refresh();
                         lsvPC.ItemsSource = db.ChiTietGiangViens.ToList();
                     }
+
+                    displayLop();
+
                 }
                 else
                     tbTB.Text = "Sĩ số phải bé hơn hoặc bằng";
@@ -76,6 +77,7 @@ namespace QLSV
                     lsvPC.ItemsSource = db.ChiTietGiangViens.ToList();
                 }
             }
+            displayLop();
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
@@ -98,6 +100,7 @@ namespace QLSV
                 MessageBox.Show("Dữ liệu đã dược cập nhật");
                 lsvPC.ItemsSource = db.Lops.ToList();
             }
+            displayLop();
         }
 
         public void displayLop()
@@ -105,7 +108,7 @@ namespace QLSV
             using (var db = new CSDLQlsv())//connect database
             {
                 lsvPC.Items.Refresh();
-                lsvPC.ItemsSource = db.Lops.ToList();
+                lsvPC.ItemsSource = db.ChiTietGiangViens.ToList();
                 var dsgv = from gv in db.GiangViens
                            select gv;
                 cbGV.ItemsSource = dsgv.ToList();
@@ -146,18 +149,21 @@ namespace QLSV
         private void btnLOPADD_Click(object sender, RoutedEventArgs e)
         {
             PhongHoc ph = new PhongHoc();
+            Close();
             ph.Show();
         }
 
         private void btnGVADD_Click(object sender, RoutedEventArgs e)
         {
-            GiangVien gv = new GiangVien();
+            GiangVienDay gv = new GiangVienDay();
+            Close();
             gv.Show();
         }
 
         private void btnMHADD_Click(object sender, RoutedEventArgs e)
         {
             MonhocSV mh = new MonhocSV();
+            Close();
             mh.Show();
         }
 
@@ -165,6 +171,41 @@ namespace QLSV
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
+        }
+
+       
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            using (var db = new CSDLQlsv())//connect database
+            {
+                lsvPC.Items.Refresh();
+                lsvPC.ItemsSource = db.ChiTietGiangViens.ToList();
+                var dsgv = from gv in db.GiangViens
+                           select gv;
+                cbGV.ItemsSource = dsgv.ToList();
+                cbGV.DisplayMemberPath = "tenGV";
+                cbGV.SelectedValuePath = "Id";
+                cbGV.SelectedIndex = 0;
+
+                var dsmon = from mh in db.MonHocs
+                            select mh;
+                cbMH.ItemsSource = dsmon.ToList();
+                cbMH.DisplayMemberPath = "tenMH";
+                cbMH.SelectedValuePath = "Id";
+                cbMH.SelectedIndex = 0;
+
+                var dslop = from lop in db.Lops
+                            select lop;
+                cbLop.ItemsSource = dslop.ToList();
+                cbLop.DisplayMemberPath = "tenLop";
+                cbLop.SelectedValuePath = "Id";
+                cbLop.SelectedIndex = 0;
+            }
+            cbLop.Items.Refresh();
+            cbMH.Items.Refresh();
+            cbGV.Items.Refresh();
+            lsvPC.Items.Refresh();
         }
     }
 }

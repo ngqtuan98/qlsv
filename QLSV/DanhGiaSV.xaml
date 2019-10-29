@@ -5,19 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QLSV"
         mc:Ignorable="d"
-        Title="DanhGia" Height="444.034" Width="583.658">
+        Title="DanhGia" Height="831.523" Width="761.457">
     <Grid>
-        <DataGrid x:Name="DanhGia" AutoGenerateColumns="False" IsReadOnly="True" Margin="37,169,36,10" >
+        <Label x:Name="label1" Content="Thêm loại đánh giá" HorizontalAlignment="Left" Margin="109,115,0,0" VerticalAlignment="Top" FontSize="11" Height="25" Width="109" RenderTransformOrigin="0.5,0.5">
+
+        </Label>
+        <TextBox CharacterCasing="Upper" Text="{Binding SelectedItem.DanhGia1, ElementName=lsvDG, Mode=TwoWay}" x:Name="tbDG" HorizontalAlignment="Left" Height="40" Margin="235,100,0,0" VerticalAlignment="Top" Width="229" />
+
+        <DataGrid x:Name="lsvDG" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,298,0,0" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Width="50"></DataGridTextColumn>
-                <DataGridTextColumn Header="Loại Đánh Giá" Width="190" ></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding DanhGia1}" Header="Loại đánh giá" Width="250"></DataGridTextColumn>
+                <DataGridTextColumn Visibility="Hidden" Binding="{Binding Id}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="button" Content="Thêm" HorizontalAlignment="Left" Margin="131,113,0,0" VerticalAlignment="Top" Width="75" Height="30" />
-        <Button x:Name="button1" Content="Xóa" HorizontalAlignment="Left" Margin="235,113,0,0" VerticalAlignment="Top" Width="75" Height="30"/>
-        <Button x:Name="button2" Content="Cập Nhật" HorizontalAlignment="Left" Margin="340,113,0,0" VerticalAlignment="Top" Width="100" Height="30"/>
-        <Label x:Name="label" Content="LOẠI ĐÁNH GIÁ" HorizontalAlignment="Left" Margin="199,10,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Label x:Name="label1" Content="Đánh Giá:" HorizontalAlignment="Left" Margin="129,66,0,0" VerticalAlignment="Top" FontSize="11" Height="25" Width="77"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="30" Margin="222,61,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="128" />
+        <Button x:Name="btnAdd" Content="Thêm" HorizontalAlignment="Left" Margin="152,194,0,0" VerticalAlignment="Top" Width="74" Height="30" Click="button_Click"/>
+        <Button x:Name="btnDel" Content="Xóa" HorizontalAlignment="Left" Margin="258,194,0,0" VerticalAlignment="Top" Width="76" Height="30" Click="btnDel_Click"/>
+        <Button x:Name="btnUpdate" Content="Cập Nhật" HorizontalAlignment="Left" Margin="360,194,0,0" VerticalAlignment="Top" Width="98" Height="30" Click="btnUpdate_Click"/>
+        <Label x:Name="label" Content="ĐÁNH GIÁ" HorizontalAlignment="Left" Margin="276,25,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <TextBox Visibility="Hidden" x:Name="tbID" Text="{Binding SelectedItem.Id, ElementName=lsvDG, Mode=TwoWay}"  HorizontalAlignment="Left" Height="20" Margin="235,52,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="51" />
+        <Button x:Name="btnHome" Content="Home" HorizontalAlignment="Left" Margin="484,194,0,0" VerticalAlignment="Top" Width="74" Height="30" Click="BtnHome_Click" />
     </Grid>
 </Window>

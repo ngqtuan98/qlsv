@@ -67,7 +67,7 @@
         <GroupBox Header="Màn hình" HorizontalAlignment="Left" Height="248" Margin="753,21,0,0" VerticalAlignment="Top" Width="198"/>
         <Button x:Name="btnBaoCao" Content="Báo cáo" HorizontalAlignment="Left" Margin="767,69,0,0" VerticalAlignment="Top" Width="170" Height="25" Click="btnBaoCao_Click" />
         <Button x:Name="btnTK" Content="Tìm kiếm" HorizontalAlignment="Left" Margin="767,112,0,0" VerticalAlignment="Top" Width="170" Height="25" Click="BtnTK_Click"  />
-        <Button x:Name="btnCT" Content="Phân công" HorizontalAlignment="Left" Margin="767,151,0,0" VerticalAlignment="Top" Width="170" Height="25" Click="btnCT_Click"/>
+        <Button x:Name="btnPL" Content="Phân lớp" HorizontalAlignment="Left" Margin="767,151,0,0" VerticalAlignment="Top" Width="170" Height="25" Click="BtnPL_Click" />
         <Button x:Name="btnMH" Content="Môn học" HorizontalAlignment="Left" Margin="767,190,0,0" VerticalAlignment="Top" Width="170" Height="25" Click="btnMH_Click" />
         <Button x:Name="btnGV" Content="Giảng viên" HorizontalAlignment="Left" Margin="767,232,0,0" VerticalAlignment="Top" Width="170" Height="25" Click="btnGV_Click" />
     </Grid>
