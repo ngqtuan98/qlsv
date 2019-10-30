@@ -73,8 +73,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BaoCaoSV.xaml.cs">
+      <DependentUpon>BaoCaoSV.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DanhGiaSV.xaml.cs">
       <DependentUpon>DanhGiaSV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\BaoCao.cs" />
     <Compile Include="Model\ChiTietGiangVien.cs" />
@@ -101,7 +107,7 @@
     <Compile Include="TrangChu.xaml.cs">
       <DependentUpon>TrangChu.xaml</DependentUpon>
     </Compile>
-    <Page Include="BaoCao.xaml">
+    <Page Include="BaoCaoSV.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -110,6 +116,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GiangVienDay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -128,9 +138,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BaoCao.xaml.cs">
-      <DependentUpon>BaoCao.xaml</DependentUpon>
     </Compile>
     <Compile Include="GiangVienDay.xaml.cs">
       <DependentUpon>GiangVienDay.xaml</DependentUpon>
@@ -179,6 +186,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Model\QueryCSDL.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

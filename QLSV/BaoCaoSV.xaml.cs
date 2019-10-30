@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace QLSV
 {
     /// <summary>
-    /// Interaction logic for BaoCao.xaml
+    /// Interaction logic for BaoCaoSV.xaml
     /// </summary>
-    public partial class BaoCao : Window
+    public partial class BaoCaoSV : Window
     {
-        public BaoCao()
+        public BaoCaoSV()
         {
             InitializeComponent();
         }

@@ -1,0 +1,184 @@
+﻿/*    ==Scripting Parameters==
+
+    Source Server Version : SQL Server 2016 (13.0.1742)
+    Source Database Engine Edition : Microsoft SQL Server Enterprise Edition
+    Source Database Engine Type : Standalone SQL Server
+
+    Target Server Version : SQL Server 2017
+    Target Database Engine Edition : Microsoft SQL Server Standard Edition
+    Target Database Engine Type : Standalone SQL Server
+*/
+USE [db_QuanLySV]
+GO
+/****** Object:  Table [dbo].[BaoCao]    Script Date: 10/30/2019 12:58:43 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[BaoCao](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[id_SinhVien] [int] NOT NULL,
+	[id_MonHoc] [int] NOT NULL,
+	[id_DanhGia] [int] NOT NULL,
+	[diemThi] [float] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ChiTietGiangVien]    Script Date: 10/30/2019 12:58:43 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ChiTietGiangVien](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[Id_Lop] [int] NOT NULL,
+	[id_GiangVien] [int] NOT NULL,
+	[id_MonHoc] [int] NOT NULL,
+	[SiSo] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[DanhGia]    Script Date: 10/30/2019 12:58:43 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[DanhGia](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[DanhGia] [nvarchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[GiangVien]    Script Date: 10/30/2019 12:58:43 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[GiangVien](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[tenGV] [nvarchar](max) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Lop]    Script Date: 10/30/2019 12:58:43 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Lop](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[tenLop] [nvarchar](10) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[MonHoc]    Script Date: 10/30/2019 12:58:43 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[MonHoc](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[tenMH] [nvarchar](max) NULL,
+	[id_Nganh] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Nganh]    Script Date: 10/30/2019 12:58:43 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Nganh](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[tenNganh] [nvarchar](max) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[SinhVien]    Script Date: 10/30/2019 12:58:43 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[SinhVien](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ten] [nvarchar](50) NULL,
+	[ngaySinh] [date] NULL,
+	[gioiTinh] [nchar](10) NULL,
+	[truongTHPT] [nvarchar](100) NULL,
+	[diemThi] [float] NULL,
+	[diemChuan] [float] NULL,
+	[MSSV] [nchar](50) NULL,
+	[id_Nganh] [int] NOT NULL,
+	[id_Lop] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[BaoCao]  WITH CHECK ADD  CONSTRAINT [FK_BaoCao_DanhGia] FOREIGN KEY([id_DanhGia])
+REFERENCES [dbo].[DanhGia] ([Id])
+GO
+ALTER TABLE [dbo].[BaoCao] CHECK CONSTRAINT [FK_BaoCao_DanhGia]
+GO
+ALTER TABLE [dbo].[BaoCao]  WITH CHECK ADD  CONSTRAINT [FK_BaoCao_Mon] FOREIGN KEY([id_MonHoc])
+REFERENCES [dbo].[MonHoc] ([Id])
+GO
+ALTER TABLE [dbo].[BaoCao] CHECK CONSTRAINT [FK_BaoCao_Mon]
+GO
+ALTER TABLE [dbo].[BaoCao]  WITH CHECK ADD  CONSTRAINT [FK_BaoCao_SinhVien] FOREIGN KEY([id_SinhVien])
+REFERENCES [dbo].[SinhVien] ([Id])
+GO
+ALTER TABLE [dbo].[BaoCao] CHECK CONSTRAINT [FK_BaoCao_SinhVien]
+GO
+ALTER TABLE [dbo].[ChiTietGiangVien]  WITH CHECK ADD  CONSTRAINT [FK_ChiTietGiangVien_GiangVien] FOREIGN KEY([id_GiangVien])
+REFERENCES [dbo].[GiangVien] ([Id])
+GO
+ALTER TABLE [dbo].[ChiTietGiangVien] CHECK CONSTRAINT [FK_ChiTietGiangVien_GiangVien]
+GO
+ALTER TABLE [dbo].[ChiTietGiangVien]  WITH CHECK ADD  CONSTRAINT [FK_ChiTietGiangVien_Lop] FOREIGN KEY([Id_Lop])
+REFERENCES [dbo].[Lop] ([Id])
+GO
+ALTER TABLE [dbo].[ChiTietGiangVien] CHECK CONSTRAINT [FK_ChiTietGiangVien_Lop]
+GO
+ALTER TABLE [dbo].[ChiTietGiangVien]  WITH CHECK ADD  CONSTRAINT [FK_ChiTietGiangVien_MonHoc] FOREIGN KEY([id_MonHoc])
+REFERENCES [dbo].[MonHoc] ([Id])
+GO
+ALTER TABLE [dbo].[ChiTietGiangVien] CHECK CONSTRAINT [FK_ChiTietGiangVien_MonHoc]
+GO
+ALTER TABLE [dbo].[MonHoc]  WITH CHECK ADD  CONSTRAINT [FK_MonHoc_Nganh] FOREIGN KEY([id_Nganh])
+REFERENCES [dbo].[Nganh] ([Id])
+GO
+ALTER TABLE [dbo].[MonHoc] CHECK CONSTRAINT [FK_MonHoc_Nganh]
+GO
+ALTER TABLE [dbo].[SinhVien]  WITH CHECK ADD  CONSTRAINT [FK_SinhVien_Lop] FOREIGN KEY([id_Lop])
+REFERENCES [dbo].[Lop] ([Id])
+GO
+ALTER TABLE [dbo].[SinhVien] CHECK CONSTRAINT [FK_SinhVien_Lop]
+GO
+ALTER TABLE [dbo].[SinhVien]  WITH CHECK ADD  CONSTRAINT [FK_SinhVien_Nganh] FOREIGN KEY([id_Nganh])
+REFERENCES [dbo].[Nganh] ([Id])
+GO
+ALTER TABLE [dbo].[SinhVien] CHECK CONSTRAINT [FK_SinhVien_Nganh]
+GO
