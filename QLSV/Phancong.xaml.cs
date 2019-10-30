@@ -179,8 +179,9 @@ namespace QLSV
         {
             using (var db = new CSDLQlsv())//connect database
             {
-                lsvPC.Items.Refresh();
                 lsvPC.ItemsSource = db.ChiTietGiangViens.ToList();
+                
+                
                 var dsgv = from gv in db.GiangViens
                            select gv;
                 cbGV.ItemsSource = dsgv.ToList();

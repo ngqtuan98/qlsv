@@ -242,7 +242,8 @@ namespace QLSV
 
         private void btnBaoCao_Click(object sender, RoutedEventArgs e)
         {
-            BaoCao btnBao = new BaoCao();
+            BaoCaoSV btnBao = new BaoCaoSV();
+
             btnBao.Show();
         }
 
@@ -334,7 +335,8 @@ namespace QLSV
 
         private void BtnTK_Click(object sender, RoutedEventArgs e)
         {
-
+            TiemKiem tk = new TiemKiem();
+            tk.Show();
         }
 
         private void BtnPL_Click(object sender, RoutedEventArgs e)
@@ -343,6 +345,23 @@ namespace QLSV
             Close();
             pc.Show();
         }
+
+        private void Tbtk_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            using (var db = new CSDLQlsv())//connect database
+            {
+                var query = (from c in db.SinhViens
+                            where c.ten.StartsWith(tbtk.Text)
+                            select c).ToList();
+
+                lsvDSSV.ItemsSource = query;
+               
+            }
+
+            lsvDSSV.Items.Refresh();
+        }
+
+       
     }
 }
           

@@ -4,16 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QLSV"
-        mc:Ignorable="d"
+        mc:Ignorable="d" Loaded="Window_Loaded"
         Title="BaoCaoSV" Height="856" Width="1304.5">
     <Grid>
         <Label x:Name="label1" Content="Sinh viên:" HorizontalAlignment="Left" Margin="41,49,0,0" VerticalAlignment="Top" FontSize="11" Height="25" Width="66" RenderTransformOrigin="0.5,0.5">
 
         </Label>
-        <ComboBox Text="{Binding SelectedItem.Lop.tenLop, ElementName=lsvLop, Mode=TwoWay}" x:Name="cbSV" HorizontalAlignment="Left" Height="37" Margin="115,35,0,0" VerticalAlignment="Top" Width="184" />
-        <DataGrid x:Name="lsvPC"  AutoGenerateColumns="False" IsReadOnly="True" Margin="0,240,0,0" >
+        <ComboBox Text="{Binding SelectedItem.SinhVien.ten, ElementName=lsvBC, Mode=TwoWay}" x:Name="cbSV" HorizontalAlignment="Left" Height="37" Margin="115,35,0,0" VerticalAlignment="Top" Width="184" />
+        <DataGrid x:Name="lsvBC"  AutoGenerateColumns="False" IsReadOnly="True" Margin="0,240,0,0" >
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding SinhVien.tenSV}" Header="Tên SV" Width="250"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding SinhVien.ten}" Header="Tên SV" Width="250"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding DanhGia.DanhGia1}" Header="Đánh giá" Width="250"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding MonHoc.tenMH}" Header="Môn học" Width="250"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding diemThi}" Header="Diểm thi" Width="250"></DataGridTextColumn>
@@ -23,14 +23,14 @@
         <Button x:Name="btnAdd" Content="Thêm" HorizontalAlignment="Left" Margin="709,182,0,0" VerticalAlignment="Top" Width="74" Height="30" Click="button_Click"/>
         <Button x:Name="btnDel" Content="Xóa" HorizontalAlignment="Left" Margin="814,182,0,0" VerticalAlignment="Top" Width="76" Height="30" Click="btnDel_Click"/>
         <Button x:Name="btnUpdate" Content="Cập Nhật" HorizontalAlignment="Left" Margin="916,182,0,0" VerticalAlignment="Top" Width="98" Height="30" Click="btnUpdate_Click"/>
-        <Label x:Name="label" Content="DANH SÁCH LỚP" HorizontalAlignment="Left" Margin="479,10,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <TextBox Visibility="Hidden" x:Name="txtIDpc" Text="{Binding SelectedItem.Id, ElementName=lsvPC, Mode=TwoWay}"  HorizontalAlignment="Left" Height="20" Margin="235,52,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="51" />
+        <Label x:Name="label" Content="Báo cáo" HorizontalAlignment="Left" Margin="479,10,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <TextBox Visibility="Hidden" x:Name="tbID" Text="{Binding SelectedItem.Id, ElementName=lsvBC, Mode=TwoWay}"  HorizontalAlignment="Left" Height="20" Margin="235,52,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="51" />
         <Label x:Name="label1_Copy" Content="Đánh giá:" HorizontalAlignment="Left" Margin="41,91,0,0" VerticalAlignment="Top" FontSize="11" Height="25" Width="66" RenderTransformOrigin="0.5,0.5"/>
-        <ComboBox Text="{Binding SelectedItem.GiaoVien.tenGV, ElementName=lsvPC, Mode=TwoWay}" Name="ccbDG" HorizontalAlignment="Left" Height="37" Margin="115,77,0,0" VerticalAlignment="Top" Width="184" />
+        <ComboBox Text="{Binding SelectedItem.DanhGia.DanhGia1, ElementName=lsvBC, Mode=TwoWay}" Name="cbDG" HorizontalAlignment="Left" Height="37" Margin="115,77,0,0" VerticalAlignment="Top" Width="184" />
         <Label x:Name="label1_Copy1" Content="Môn học:" HorizontalAlignment="Left" Margin="46,140,0,0" VerticalAlignment="Top" FontSize="11" Height="25" Width="61" RenderTransformOrigin="0.5,0.5"/>
-        <ComboBox Text="{Binding SelectedItem.MonHoc.tenMH, ElementName=lsvPC, Mode=TwoWay}" Name="cbMH" HorizontalAlignment="Left" Height="44" Margin="115,119,0,0" VerticalAlignment="Top" Width="184" />
+        <ComboBox Text="{Binding SelectedItem.MonHoc.tenMH, ElementName=lsvBC, Mode=TwoWay}" Name="cbMH" HorizontalAlignment="Left" Height="44" Margin="115,119,0,0" VerticalAlignment="Top" Width="184" />
         <Label x:Name="label1_Copy2" Content="Điểm thi:" HorizontalAlignment="Left" Margin="50,189,0,0" VerticalAlignment="Top" FontSize="11" Height="25" Width="57" RenderTransformOrigin="0.5,0.5"/>
-        <TextBox  PreviewTextInput="txtsiso_PreviewTextInput" Text="{Binding SelectedItem.SiSo, ElementName=lsvLop, Mode=TwoWay}" x:Name="tbDT" HorizontalAlignment="Left" Height="41" Margin="115,168,0,0" VerticalAlignment="Top" Width="85" />
+        <TextBox  PreviewTextInput="txtsiso_PreviewTextInput" Text="{Binding SelectedItem.diemThi, ElementName=lsvBC, Mode=TwoWay}" x:Name="tbDT" HorizontalAlignment="Left" Height="41" Margin="115,168,0,0" VerticalAlignment="Top" Width="85" />
         <Button x:Name="btnGVADD" HorizontalAlignment="Left" Margin="326,86,0,0" VerticalAlignment="Top" Width="43" Height="30" Click="btnGVADD_Click" />
         <Button x:Name="btnMHADD" HorizontalAlignment="Left" Margin="326,133,0,0" VerticalAlignment="Top" Width="43" Height="30" Click="btnMHADD_Click" />
         <Button x:Name="btnLOPADD"  HorizontalAlignment="Left" Margin="326,44,0,0" VerticalAlignment="Top" Width="43" Height="30" Click="btnLOPADD_Click" />

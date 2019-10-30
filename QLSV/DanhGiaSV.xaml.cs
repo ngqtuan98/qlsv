@@ -121,9 +121,18 @@ namespace QLSV
 
         private void BtnHome_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mwd = new MainWindow();
+            BaoCaoSV mwd = new BaoCaoSV();
             Close();
             mwd.Show();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            using (var db = new CSDLQlsv())//connect database
+            {
+                lsvDG.Items.Refresh();
+                lsvDG.ItemsSource = db.DanhGias.ToList();
+            }
         }
     }
 }
