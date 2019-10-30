@@ -27,12 +27,17 @@ namespace QLSV
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            FLogin(tbAcc.Text, tbbPass.Text);
+            
+        }
 
-            if (CheckAcc() == true&&CheckPass()==true)
+        public void FLogin(string acc, string pass)
+        {
+            if (CheckAcc(acc) == true && CheckPass(pass) == true)
             {
-                if (hasSpecialChar(tbAcc.Text) == false)
+                if (hasSpecialChar(tbAcc.Text) == false &&KhoangTrang(tbAcc.Text)==true)
                 {
-                    if (tbAcc.Text == "Tuan123" && tbbPass.Text == "Tuan@123")
+                    if ( acc== "Tuan123" &&  pass== "Tuan@123")
                     {
                         MainWindow mwd = new MainWindow();
                         Close();
@@ -53,32 +58,46 @@ namespace QLSV
                 MessageBox.Show("Phải >= 6 và <= 15", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        public bool CheckAcc()
+
+        public bool CheckAcc(string Acc)
         {
-            var a = (tbAcc.Text).Length;
+            var a = Acc.Length;
             if (a >= 6 && a <= 15)
+            {
                 return true;
+            }
             else return false;
 
         }
-        public bool CheckPass()
+        public bool CheckPass(string Pass)
         {
-            var a = (tbAcc.Text).Length;
+            var a = (Pass).Length;
             if (a >= 8 && a <= 20)
                 return true;
             else return false;
 
         }
-        public  bool hasSpecialChar( string input )
+        public bool KhoangTrang(string input)
         {
 
-            string specialChar = @"\|!#$%&/()=?»«@£§€{}.-;'<>_, ";
+            
+            if (input.IndexOf(" ") != -1)
+                return true;
+            else return false;
+        }
+
+        public bool hasSpecialChar(string input)
+        {
+
+            string specialChar = @"\|!#$%&/()=?»«@£§€{}.-;'<>_,";
+           
             foreach (var item in specialChar)
             {
                 if (input.Contains(item)) return true;
             }
 
             return false;
+
         }
 
     }
