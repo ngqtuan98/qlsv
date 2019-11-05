@@ -58,44 +58,58 @@ namespace QLSV
 
         private void btnDel_Click(object sender, RoutedEventArgs e)
         {
-
-            using (var db = new CSDLQlsv())//connect database
+            try
             {
-                int method = int.Parse(tbID.Text);
-                if (MessageBox.Show("Bạn thực sự muốn xoá  này?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                using (var db = new CSDLQlsv())//connect database
                 {
-                    var remove = db.BaoCaos.Find(method); //Tìm kiếm theo primary key
-                    db.BaoCaos.Remove(remove);
-                    db.SaveChanges();
-                    Clear();
-                    lsvBC.Items.Refresh();
-                    lsvBC.ItemsSource = db.BaoCaos.ToList();
+                    int method = int.Parse(tbID.Text);
+                    if (MessageBox.Show("Bạn thực sự muốn xoá  này?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        var remove = db.BaoCaos.Find(method); //Tìm kiếm theo primary key
+                        db.BaoCaos.Remove(remove);
+                        db.SaveChanges();
+                        Clear();
+                        lsvBC.Items.Refresh();
+                        lsvBC.ItemsSource = db.BaoCaos.ToList();
+                    }
                 }
+                displayLop();
             }
-            displayLop();
+            catch
+            {
+                MessageBox.Show("Vui lòng liên hệ với bộ phận kỹ thuật", "Lỗi hệ thống", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            int idcbsv = int.Parse(cbSV.SelectedValue.ToString());
-            int idcbdg = int.Parse(cbDG.SelectedValue.ToString());
-            int idcbmh = int.Parse(cbMH.SelectedValue.ToString());
-            int diem = int.Parse(tbDT.Text.ToString());
-            int method = int.Parse(tbID.Text);
-            using (var db = new CSDLQlsv())//connect database
+            try
             {
-                var updatepc = db.BaoCaos.Find(method);//Tìm kiếm theo primary key
+                int idcbsv = int.Parse(cbSV.SelectedValue.ToString());
+                int idcbdg = int.Parse(cbDG.SelectedValue.ToString());
+                int idcbmh = int.Parse(cbMH.SelectedValue.ToString());
+                int diem = int.Parse(tbDT.Text.ToString());
+                int method = int.Parse(tbID.Text);
+                using (var db = new CSDLQlsv())//connect database
+                {
+                    var updatepc = db.BaoCaos.Find(method);//Tìm kiếm theo primary key
 
-                updatepc.id_SinhVien = idcbsv;
-                updatepc.id_DanhGia = idcbdg;
-                updatepc.id_MonHoc = idcbmh;
-                updatepc.diemThi = diem;
-                db.SaveChanges();
-                Clear();
-                MessageBox.Show("Dữ liệu đã dược cập nhật");
-                lsvBC.ItemsSource = db.Lops.ToList();
+                    updatepc.id_SinhVien = idcbsv;
+                    updatepc.id_DanhGia = idcbdg;
+                    updatepc.id_MonHoc = idcbmh;
+                    updatepc.diemThi = diem;
+                    db.SaveChanges();
+                    Clear();
+                    MessageBox.Show("Dữ liệu đã dược cập nhật");
+                    lsvBC.ItemsSource = db.Lops.ToList();
+                }
+                displayLop();
             }
-            displayLop();
+            catch
+            {
+                MessageBox.Show("Không nhập đúng theo yêu cầu", "Lỗi định dạng", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
         }
 
         public void displayLop()
@@ -201,6 +215,11 @@ namespace QLSV
             lsvBC.Items.Refresh();
         }
 
-       
+        private void BtnHome_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mwd = new MainWindow();
+            Close();
+            mwd.Show();
+        }
     }
 }

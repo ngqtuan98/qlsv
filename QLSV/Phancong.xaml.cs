@@ -63,44 +63,59 @@ namespace QLSV
 
         private void btnDel_Click(object sender, RoutedEventArgs e)
         {
-
-            using (var db = new CSDLQlsv())//connect database
+            try
             {
-                int idgv = int.Parse(txtIDpc.Text);
-                if (MessageBox.Show("Bạn thực sự muốn xoá nhân viên này?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                using (var db = new CSDLQlsv())//connect database
                 {
-                    var rmpc = db.ChiTietGiangViens.Find(idgv); //Tìm kiếm theo primary key
-                    db.ChiTietGiangViens.Remove(rmpc);
-                    db.SaveChanges();
-                    Clear();
-                    lsvPC.Items.Refresh();
-                    lsvPC.ItemsSource = db.ChiTietGiangViens.ToList();
+                    int idgv = int.Parse(txtIDpc.Text);
+                    if (MessageBox.Show("Bạn thực sự muốn xoá nhân viên này?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        var rmpc = db.ChiTietGiangViens.Find(idgv); //Tìm kiếm theo primary key
+                        db.ChiTietGiangViens.Remove(rmpc);
+                        db.SaveChanges();
+                        Clear();
+                        lsvPC.Items.Refresh();
+                        lsvPC.ItemsSource = db.ChiTietGiangViens.ToList();
+                    }
                 }
+                displayLop();
             }
-            displayLop();
+            catch
+            {
+                MessageBox.Show("Vui lòng liên hệ với bộ phận kỹ thuật", "Lỗi hệ thống", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            int idcblop = int.Parse(cbLop.SelectedValue.ToString());
-            int idcbgv = int.Parse(cbGV.SelectedValue.ToString());
-            int idcbmh = int.Parse(cbMH.SelectedValue.ToString());
-            int siso = int.Parse(txtsiso.Text.ToString());
-            int idgv = int.Parse(txtIDpc.Text);
-            using (var db = new CSDLQlsv())//connect database
+            try
             {
-                var updatepc = db.ChiTietGiangViens.Find(idgv);//Tìm kiếm theo primary key
+                int idcblop = int.Parse(cbLop.SelectedValue.ToString());
+                int idcbgv = int.Parse(cbGV.SelectedValue.ToString());
+                int idcbmh = int.Parse(cbMH.SelectedValue.ToString());
+                int siso = int.Parse(txtsiso.Text.ToString());
+                int idgv = int.Parse(txtIDpc.Text);
+                using (var db = new CSDLQlsv())//connect database
+                {
+                    var updatepc = db.ChiTietGiangViens.Find(idgv);//Tìm kiếm theo primary key
 
-                updatepc.Id_Lop = idcblop;
-                updatepc.id_GiangVien = idcbgv;
-                updatepc.id_MonHoc = idcbmh;
-                updatepc.SiSo = siso;
-                db.SaveChanges();
-                Clear();
-                MessageBox.Show("Dữ liệu đã dược cập nhật");
-                lsvPC.ItemsSource = db.Lops.ToList();
+                    updatepc.Id_Lop = idcblop;
+                    updatepc.id_GiangVien = idcbgv;
+                    updatepc.id_MonHoc = idcbmh;
+                    updatepc.SiSo = siso;
+                    db.SaveChanges();
+                    Clear();
+                    MessageBox.Show("Dữ liệu đã dược cập nhật");
+                    lsvPC.ItemsSource = db.Lops.ToList();
+                }
+                displayLop();
             }
-            displayLop();
+            catch
+            {
+                MessageBox.Show("Không nhập đúng theo yêu cầu", "Lỗi định dạng", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
         }
 
         public void displayLop()
@@ -207,6 +222,12 @@ namespace QLSV
             cbMH.Items.Refresh();
             cbGV.Items.Refresh();
             lsvPC.Items.Refresh();
+        }
+        private void BtnHome_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mwd = new MainWindow();
+            Close();
+            mwd.Show();
         }
     }
 }

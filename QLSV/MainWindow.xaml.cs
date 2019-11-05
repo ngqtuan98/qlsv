@@ -243,7 +243,7 @@ namespace QLSV
         private void btnBaoCao_Click(object sender, RoutedEventArgs e)
         {
             BaoCaoSV btnBao = new BaoCaoSV();
-
+            Close();
             btnBao.Show();
         }
 
@@ -355,13 +355,51 @@ namespace QLSV
                             select c).ToList();
 
                 lsvDSSV.ItemsSource = query;
-               
+                var dslop = from lop in db.Lops
+                            select lop;
+                cbLop.ItemsSource = dslop.ToList();
+                cbLop.DisplayMemberPath = "tenLop";
+                cbLop.SelectedValuePath = "Id";
+                cbLop.SelectedIndex = 0;
+
+                var dsnganh = from nganh in db.Nganhs
+                              select nganh;
+                cbNganh.ItemsSource = dsnganh.ToList();
+                cbNganh.DisplayMemberPath = "tenNganh";
+                cbNganh.SelectedValuePath = "Id";
+                cbNganh.SelectedIndex = 0;
+
             }
 
+            cbLop.Items.Refresh();
+            cbNganh.Items.Refresh();
             lsvDSSV.Items.Refresh();
+           
         }
 
-       
+        private void Tbtkd_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
+            try
+            {
+                int tkd = int.Parse(tbtkd.Text);
+                using (var db = new CSDLQlsv())//connect database
+                {
+                    var query = (from c in db.SinhViens
+                                 where c.diemThi==(tkd)
+                                 select c).ToList();
+                    lsvDSSV.ItemsSource = query;
+
+                }
+                lsvDSSV.Items.Refresh();
+
+            }
+            catch
+            {
+                lsvDSSV.Items.Refresh();
+            }
+           
+        }
     }
 }
           
