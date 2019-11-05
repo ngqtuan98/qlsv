@@ -17,48 +17,43 @@ using QLSV.Model;
 namespace QLSV
 {
     /// <summary>
-    /// Interaction logic for Phancong.xaml
+    /// Interaction logic for BaoCaoSV.xaml
     /// </summary>
-    public partial class Phancong : Window
+    public partial class BaoCaoSV : Window
     {
-        public Phancong()
+        public BaoCaoSV()
         {
             InitializeComponent();
-            
         }
         private void button_Click(object sender, RoutedEventArgs e)
         {
 
-            try 
+            try
             {
-                int idcblop = int.Parse(cbLop.SelectedValue.ToString());
-                int idcbgv = int.Parse(cbGV.SelectedValue.ToString());
+                int idcbsv = int.Parse(cbSV.SelectedValue.ToString());
+                int idcbdg = int.Parse(cbDG.SelectedValue.ToString());
                 int idcbmh = int.Parse(cbMH.SelectedValue.ToString());
-                int siso = int.Parse(txtsiso.Text.ToString());
+                int diem = int.Parse(tbDT.Text.ToString());
 
-                if (siso <= 40)
-                {
                     using (var db = new CSDLQlsv())//connect database
                     {
-                        var pc = new ChiTietGiangVien { Id_Lop = idcblop, id_GiangVien = idcbgv, id_MonHoc = idcbmh, SiSo = siso };
-                        db.ChiTietGiangViens.Add(pc);
+                        var pc = new BaoCao { id_SinhVien = idcbsv, id_DanhGia = idcbdg, id_MonHoc = idcbmh, diemThi = diem };
+                        db.BaoCaos.Add(pc);
                         db.SaveChanges();
                         Clear();
-                        lsvPC.Items.Refresh();
-                        lsvPC.ItemsSource = db.ChiTietGiangViens.ToList();
+                        lsvBC.Items.Refresh();
+                        lsvBC.ItemsSource = db.BaoCaos.ToList();
                     }
 
                     displayLop();
 
-                }
-                else
-                    tbTB.Text = "Sĩ số phải bé hơn hoặc bằng";
             }
             catch (Exception)
             {
-                tbTB.Text = "KHÔNG ĐƯỢC TRỐNG";
+                MessageBox.Show("Không được trống", "Lỗi định dạng", MessageBoxButton.OK, MessageBoxImage.Error);
+
             }
-               
+
         }
 
         private void btnDel_Click(object sender, RoutedEventArgs e)
@@ -67,15 +62,15 @@ namespace QLSV
             {
                 using (var db = new CSDLQlsv())//connect database
                 {
-                    int idgv = int.Parse(txtIDpc.Text);
-                    if (MessageBox.Show("Bạn thực sự muốn xoá nhân viên này?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    int method = int.Parse(tbID.Text);
+                    if (MessageBox.Show("Bạn thực sự muốn xoá  này?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
-                        var rmpc = db.ChiTietGiangViens.Find(idgv); //Tìm kiếm theo primary key
-                        db.ChiTietGiangViens.Remove(rmpc);
+                        var remove = db.BaoCaos.Find(method); //Tìm kiếm theo primary key
+                        db.BaoCaos.Remove(remove);
                         db.SaveChanges();
                         Clear();
-                        lsvPC.Items.Refresh();
-                        lsvPC.ItemsSource = db.ChiTietGiangViens.ToList();
+                        lsvBC.Items.Refresh();
+                        lsvBC.ItemsSource = db.BaoCaos.ToList();
                     }
                 }
                 displayLop();
@@ -84,30 +79,29 @@ namespace QLSV
             {
                 MessageBox.Show("Vui lòng liên hệ với bộ phận kỹ thuật", "Lỗi hệ thống", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                int idcblop = int.Parse(cbLop.SelectedValue.ToString());
-                int idcbgv = int.Parse(cbGV.SelectedValue.ToString());
+                int idcbsv = int.Parse(cbSV.SelectedValue.ToString());
+                int idcbdg = int.Parse(cbDG.SelectedValue.ToString());
                 int idcbmh = int.Parse(cbMH.SelectedValue.ToString());
-                int siso = int.Parse(txtsiso.Text.ToString());
-                int idgv = int.Parse(txtIDpc.Text);
+                int diem = int.Parse(tbDT.Text.ToString());
+                int method = int.Parse(tbID.Text);
                 using (var db = new CSDLQlsv())//connect database
                 {
-                    var updatepc = db.ChiTietGiangViens.Find(idgv);//Tìm kiếm theo primary key
+                    var updatepc = db.BaoCaos.Find(method);//Tìm kiếm theo primary key
 
-                    updatepc.Id_Lop = idcblop;
-                    updatepc.id_GiangVien = idcbgv;
+                    updatepc.id_SinhVien = idcbsv;
+                    updatepc.id_DanhGia = idcbdg;
                     updatepc.id_MonHoc = idcbmh;
-                    updatepc.SiSo = siso;
+                    updatepc.diemThi = diem;
                     db.SaveChanges();
                     Clear();
                     MessageBox.Show("Dữ liệu đã dược cập nhật");
-                    lsvPC.ItemsSource = db.Lops.ToList();
+                    lsvBC.ItemsSource = db.Lops.ToList();
                 }
                 displayLop();
             }
@@ -122,14 +116,14 @@ namespace QLSV
         {
             using (var db = new CSDLQlsv())//connect database
             {
-                lsvPC.Items.Refresh();
-                lsvPC.ItemsSource = db.ChiTietGiangViens.ToList();
-                var dsgv = from gv in db.GiangViens
-                           select gv;
-                cbGV.ItemsSource = dsgv.ToList();
-                cbGV.DisplayMemberPath = "tenGV";
-                cbGV.SelectedValuePath = "Id";
-                cbGV.SelectedIndex = 0;
+                lsvBC.Items.Refresh();
+                lsvBC.ItemsSource = db.BaoCaos.ToList();
+                var dsdg = from dg in db.DanhGias
+                           select dg;
+                cbDG.ItemsSource = dsdg.ToList();
+                cbDG.DisplayMemberPath = "DanhGia1";
+                cbDG.SelectedValuePath = "Id";
+                cbDG.SelectedIndex = 0;
 
                 var dsmon = from mh in db.MonHocs
                             select mh;
@@ -138,26 +132,26 @@ namespace QLSV
                 cbMH.SelectedValuePath = "Id";
                 cbMH.SelectedIndex = 0;
 
-                var dslop = from lop in db.Lops
-                            select lop;
-                cbLop.ItemsSource = dslop.ToList();
-                cbLop.DisplayMemberPath = "tenLop";
-                cbLop.SelectedValuePath = "Id";
-                cbLop.SelectedIndex = 0;
+                var dssv = from sv in db.SinhViens
+                            select sv;
+                cbSV.ItemsSource = dssv.ToList();
+                cbSV.DisplayMemberPath = "ten";
+                cbSV.SelectedValuePath = "Id";
+                cbSV.SelectedIndex = 0;
             }
-            cbLop.Items.Refresh();
+            cbSV.Items.Refresh();
             cbMH.Items.Refresh();
-            cbGV.Items.Refresh();
-            lsvPC.Items.Refresh();
+            cbDG.Items.Refresh();
+            lsvBC.Items.Refresh();
         }
         public void Clear()
         {
-            cbLop.Text = "";
-            txtIDpc.Text = "";
-            cbGV.Text = "";
+            cbSV.Text = "";
+            tbID.Text = "";
+            cbDG.Text = "";
             cbMH.Text = "";
-            txtsiso.Text = "";
-            tbTB.Text = "";
+            tbDT.Text = "";
+           
         }
 
 
@@ -170,9 +164,9 @@ namespace QLSV
 
         private void btnGVADD_Click(object sender, RoutedEventArgs e)
         {
-            GiangVienDay gv = new GiangVienDay();
+            DanhGiaSV dg = new DanhGiaSV();
             Close();
-            gv.Show();
+            dg.Show();
         }
 
         private void btnMHADD_Click(object sender, RoutedEventArgs e)
@@ -188,21 +182,18 @@ namespace QLSV
             e.Handled = regex.IsMatch(e.Text);
         }
 
-       
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             using (var db = new CSDLQlsv())//connect database
             {
-                lsvPC.ItemsSource = db.ChiTietGiangViens.ToList();
-                
-                
-                var dsgv = from gv in db.GiangViens
-                           select gv;
-                cbGV.ItemsSource = dsgv.ToList();
-                cbGV.DisplayMemberPath = "tenGV";
-                cbGV.SelectedValuePath = "Id";
-                cbGV.SelectedIndex = 0;
+                lsvBC.Items.Refresh();
+                lsvBC.ItemsSource = db.BaoCaos.ToList();
+                var dsdg = from dg in db.DanhGias
+                           select dg;
+                cbDG.ItemsSource = dsdg.ToList();
+                cbDG.DisplayMemberPath = "DanhGia1";
+                cbDG.SelectedValuePath = "Id";
+                cbDG.SelectedIndex = 0;
 
                 var dsmon = from mh in db.MonHocs
                             select mh;
@@ -211,18 +202,19 @@ namespace QLSV
                 cbMH.SelectedValuePath = "Id";
                 cbMH.SelectedIndex = 0;
 
-                var dslop = from lop in db.Lops
-                            select lop;
-                cbLop.ItemsSource = dslop.ToList();
-                cbLop.DisplayMemberPath = "tenLop";
-                cbLop.SelectedValuePath = "Id";
-                cbLop.SelectedIndex = 0;
+                var dssv = from sv in db.SinhViens
+                           select sv;
+                cbSV.ItemsSource = dssv.ToList();
+                cbSV.DisplayMemberPath = "ten";
+                cbSV.SelectedValuePath = "Id";
+                cbSV.SelectedIndex = 0;
             }
-            cbLop.Items.Refresh();
+            cbSV.Items.Refresh();
             cbMH.Items.Refresh();
-            cbGV.Items.Refresh();
-            lsvPC.Items.Refresh();
+            cbDG.Items.Refresh();
+            lsvBC.Items.Refresh();
         }
+
         private void BtnHome_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mwd = new MainWindow();
@@ -231,4 +223,3 @@ namespace QLSV
         }
     }
 }
-

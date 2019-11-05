@@ -13,37 +13,30 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-
 namespace QLSV
 {
     /// <summary>
-    /// Interaction logic for DanhGiaSV.xaml
+    /// Interaction logic for GiangVien.xaml
     /// </summary>
-    public partial class DanhGiaSV : Window
+    public partial class GiangVienDay : Window
     {
-        public DanhGiaSV()
+        public GiangVienDay()
         {
             InitializeComponent();
         }
-
-       
         private void button_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-               
-                    using (var db = new CSDLQlsv())//connect database
-                    {
-                        var dg = new DanhGia { DanhGia1 = tbDG.Text };
-                        db.DanhGias.Add(dg);
-                        db.SaveChanges();
-                        Clear();
-                        lsvDG.Items.Refresh();
-                        lsvDG.ItemsSource = db.DanhGias.ToList();
-                    }
-                    displayLop();
-               
-               
+                using (var db = new CSDLQlsv())//connect database
+                {
+                    var gv = new GiangVien { tenGV = tbGV.Text };
+                    db.GiangViens.Add(gv);
+                    db.SaveChanges();
+                    Clear();
+                    lsvGV.Items.Refresh();
+                    lsvGV.ItemsSource = db.GiangViens.ToList();
+                }
             }
             catch
             {
@@ -58,18 +51,17 @@ namespace QLSV
             {
                 using (var db = new CSDLQlsv())//connect database
                 {
-                    int idDG = int.Parse(tbID.Text);
+                    int idGV = int.Parse(tbID.Text);
                     if (MessageBox.Show("Bạn thực sự muốn trường này?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
-                        var remove = db.DanhGias.Find(idDG); //Tìm kiếm theo primary key
-                        db.DanhGias.Remove(remove);
+                        var remove = db.GiangViens.Find(idGV); //Tìm kiếm theo primary key
+                        db.GiangViens.Remove(remove);
                         db.SaveChanges();
                         Clear();
-                        lsvDG.Items.Refresh();
-                        lsvDG.ItemsSource = db.DanhGias.ToList();
+                        lsvGV.Items.Refresh();
+                        lsvGV.ItemsSource = db.GiangViens.ToList();
                     }
                 }
-                displayLop();
             }
             catch
             {
@@ -79,19 +71,18 @@ namespace QLSV
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            int idDG = int.Parse(tbID.Text);
+            int idGV = int.Parse(tbID.Text);
             try
             {
                 using (var db = new CSDLQlsv())//connect database
                 {
-                    var updateLop = db.DanhGias.Find(idDG);//Tìm kiếm theo primary key
-                    updateLop.DanhGia1 = tbDG.Text;
+                    var updateLop = db.GiangViens.Find(idGV);//Tìm kiếm theo primary key
+                    updateLop.tenGV = tbGV.Text;
                     db.SaveChanges();
                     Clear();
                     MessageBox.Show("Dữ liệu đã dược cập nhật");
-                    lsvDG.ItemsSource = db.DanhGias.ToList();
+                    lsvGV.ItemsSource = db.GiangViens.ToList();
                 }
-                displayLop();
             }
             catch
             {
@@ -104,13 +95,13 @@ namespace QLSV
         {
             using (var db = new CSDLQlsv())//connect database
             {
-                lsvDG.Items.Refresh();
-                lsvDG.ItemsSource = db.DanhGias.ToList();
+                lsvGV.Items.Refresh();
+                lsvGV.ItemsSource = db.GiangViens.ToList();
             }
         }
         public void Clear()
         {
-            tbDG.Text = "";
+            tbGV.Text = "";
             tbID.Text = "";
         }
 
@@ -121,18 +112,9 @@ namespace QLSV
 
         private void BtnHome_Click(object sender, RoutedEventArgs e)
         {
-            BaoCaoSV mwd = new BaoCaoSV();
+            Phancong mwd = new Phancong();
             Close();
             mwd.Show();
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            using (var db = new CSDLQlsv())//connect database
-            {
-                lsvDG.Items.Refresh();
-                lsvDG.ItemsSource = db.DanhGias.ToList();
-            }
         }
     }
 }

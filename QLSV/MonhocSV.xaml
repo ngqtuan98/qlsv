@@ -4,31 +4,28 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QLSV"
-        mc:Ignorable="d"
-       Title="Môn Học" Height="509.078" Width="636.875">
+        mc:Ignorable="d" Loaded="Window_Loaded"
+       Title="Môn Học" Height="849.634" Width="808.666">
     <Grid Margin="0,0,2,-1">
-
-
-        <Label x:Name="label1" Content="Môn:" HorizontalAlignment="Left" Margin="34,58,0,0" VerticalAlignment="Top" FontSize="11" Height="29" Width="47" RenderTransformOrigin="0.5,0.5">
+        <Label x:Name="tbMon" Content="Tên môn học:" HorizontalAlignment="Left" Margin="73,115,0,0" VerticalAlignment="Top" FontSize="11" Height="25" Width="76" RenderTransformOrigin="0.5,0.5">
 
         </Label>
-        <TextBox Text="{Binding SelectedItem.tenMon, ElementName=lsvLop, Mode=TwoWay}" x:Name="tbLop" HorizontalAlignment="Left" Height="25" Margin="86,62,0,0" VerticalAlignment="Top" Width="148" />
-
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,189,0,0">
-            <DataGrid x:Name="lsvLop" AutoGenerateColumns="False" IsReadOnly="True" Height="280" >
-                <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Width="50"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Môn Học" Width="100" ></DataGridTextColumn>
-                        <DataGridTextColumn Header="Điểm Môn" Width="90"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Ngành" Width="105" ></DataGridTextColumn>
-                    </DataGrid.Columns>
-            </DataGrid>
-        </ScrollViewer>
-        <Button x:Name="btnAdd" Content="Thêm" HorizontalAlignment="Left" Margin="268,82,0,0" VerticalAlignment="Top" Width="75" Height="30" />
-        <Button x:Name="btnDel" Content="Xóa" HorizontalAlignment="Left" Margin="363,82,0,0" VerticalAlignment="Top" Width="75" Height="30" />
-        <Button x:Name="btnUpdte" Content="Cập Nhật" HorizontalAlignment="Left" Margin="293,131,0,0" VerticalAlignment="Top" Width="122" Height="30"/>
-        <Label x:Name="label" Content="MÔN HỌC" HorizontalAlignment="Left" Margin="238,10,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Label x:Name="label1_Copy" Content="Điểm:" HorizontalAlignment="Left" Margin="34,99,0,0" VerticalAlignment="Top" FontSize="11" Height="29" Width="47" RenderTransformOrigin="0.5,0.5"/>
-        <TextBox Text="{Binding SelectedItem.diem, ElementName=lsvLop, Mode=TwoWay}" x:Name="tbLop_Copy" HorizontalAlignment="Left" Height="25" Margin="86,103,0,0" VerticalAlignment="Top" Width="148" />
+        <TextBox CharacterCasing="Upper" Text="{Binding SelectedItem.tenMH, ElementName=lsvMH, Mode=TwoWay}" x:Name="tbMH" HorizontalAlignment="Left" Height="40" Margin="166,100,0,0" VerticalAlignment="Top" Width="183" />
+        <Label x:Name="label4" Content="Ngành:" HorizontalAlignment="Left" Margin="85,167,0,0" VerticalAlignment="Top"  FontSize="11" Height="25" Width="74"/>
+        <ComboBox  Text="{Binding SelectedItem.Nganh.tenNganh, ElementName=lsvMH, Mode=TwoWay}" Name="cbNganh" HorizontalAlignment="Left" Margin="164,166,0,0" VerticalAlignment="Top" Width="185" Height="26"/>
+        <DataGrid x:Name="lsvMH" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,298,0,0" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding tenMH}" Header="Loại đánh giá" Width="250"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Nganh.tenNganh}" Header="Ngành" Width="AUTO"></DataGridTextColumn>
+                <DataGridTextColumn Visibility="Hidden" Binding="{Binding Id}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnAdd" Content="Thêm" HorizontalAlignment="Left" Margin="359,222,0,0" VerticalAlignment="Top" Width="74" Height="30" Click="button_Click"/>
+        <Button x:Name="btnDel" Content="Xóa" HorizontalAlignment="Left" Margin="465,222,0,0" VerticalAlignment="Top" Width="76" Height="30" Click="btnDel_Click"/>
+        <Button x:Name="btnUpdate" Content="Cập Nhật" HorizontalAlignment="Left" Margin="567,222,0,0" VerticalAlignment="Top" Width="98" Height="30" Click="btnUpdate_Click"/>
+        <Label x:Name="label" Content="Môn học" HorizontalAlignment="Left" Margin="341,35,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <TextBox Visibility="Hidden" x:Name="tbID" Text="{Binding SelectedItem.Id, ElementName=lsvMH, Mode=TwoWay}"  HorizontalAlignment="Left" Height="20" Margin="235,52,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="51" />
+        <Button x:Name="btnHome" Content="Back" HorizontalAlignment="Left" Margin="691,222,0,0" VerticalAlignment="Top" Width="74" Height="30" Click="BtnHome_Click" />
+        <Button x:Name="btnAddGV" HorizontalAlignment="Left" Margin="364,167,0,0" VerticalAlignment="Top" Width="27" Height="30" />
     </Grid>
 </Window>

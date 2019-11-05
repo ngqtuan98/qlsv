@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QLSV"
         mc:Ignorable="d"
-        Title="Phancong" Height="655.326" Width="1261.865">
+        Title="Phancong" Height="655.326" Width="1261.865" Loaded="Window_Loaded">
     <Grid>
         <Label x:Name="label1" Content="Lớp:" HorizontalAlignment="Left" Margin="67,49,0,0" VerticalAlignment="Top" FontSize="11" Height="25" Width="40" RenderTransformOrigin="0.5,0.5">
 
@@ -15,25 +15,26 @@
         <DataGrid x:Name="lsvPC"  AutoGenerateColumns="False" IsReadOnly="True" Margin="0,240,0,0" >
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Lop.tenLop}" Header="Lớp" Width="250"></DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding GiaoVien.tenGV}" Header="Giáo viên" Width="250"></DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding MonHoc.tenMH}" Header="Giáo viên" Width="250"></DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding SiSO}" Header="Sĩ số" Width="250"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding GiangVien.tenGV}" Header="Giáo viên" Width="250"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding MonHoc.tenMH}" Header="Môn học" Width="250"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding SiSo}" Header="Sĩ số" Width="250"></DataGridTextColumn>
                 <DataGridTextColumn Visibility="Hidden" Binding="{Binding Id}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="btnAdd" Content="Thêm" HorizontalAlignment="Left" Margin="709,182,0,0" VerticalAlignment="Top" Width="74" Height="30" Click="button_Click"/>
         <Button x:Name="btnDel" Content="Xóa" HorizontalAlignment="Left" Margin="814,182,0,0" VerticalAlignment="Top" Width="76" Height="30" Click="btnDel_Click"/>
         <Button x:Name="btnUpdate" Content="Cập Nhật" HorizontalAlignment="Left" Margin="916,182,0,0" VerticalAlignment="Top" Width="98" Height="30" Click="btnUpdate_Click"/>
-        <Label x:Name="label" Content="DANH SÁCH LỚP" HorizontalAlignment="Left" Margin="419,10,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label x:Name="label" Content="DANH SÁCH LỚP" HorizontalAlignment="Left" Margin="479,10,0,0" VerticalAlignment="Top" FontSize="20"/>
         <TextBox Visibility="Hidden" x:Name="txtIDpc" Text="{Binding SelectedItem.Id, ElementName=lsvPC, Mode=TwoWay}"  HorizontalAlignment="Left" Height="20" Margin="235,52,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="51" />
         <Label x:Name="label1_Copy" Content="Giáo viên:" HorizontalAlignment="Left" Margin="41,91,0,0" VerticalAlignment="Top" FontSize="11" Height="25" Width="66" RenderTransformOrigin="0.5,0.5"/>
-        <ComboBox Text="{Binding SelectedItem.GiaoVien.tenGV, ElementName=lsvLop, Mode=TwoWay}" Name="cbGV" HorizontalAlignment="Left" Height="37" Margin="115,77,0,0" VerticalAlignment="Top" Width="184" />
+        <ComboBox Text="{Binding SelectedItem.GiangVien.tenGV, ElementName=lsvPC, Mode=TwoWay}" Name="cbGV" HorizontalAlignment="Left" Height="37" Margin="115,77,0,0" VerticalAlignment="Top" Width="184" />
         <Label x:Name="label1_Copy1" Content="Môn học:" HorizontalAlignment="Left" Margin="46,140,0,0" VerticalAlignment="Top" FontSize="11" Height="25" Width="61" RenderTransformOrigin="0.5,0.5"/>
-        <ComboBox Text="{Binding SelectedItem.MonHoc.tenMH, ElementName=lsvLop, Mode=TwoWay}" Name="cbMH" HorizontalAlignment="Left" Height="44" Margin="115,119,0,0" VerticalAlignment="Top" Width="184" />
+        <ComboBox Text="{Binding SelectedItem.MonHoc.tenMH, ElementName=lsvPC, Mode=TwoWay}" Name="cbMH" HorizontalAlignment="Left" Height="44" Margin="115,119,0,0" VerticalAlignment="Top" Width="184" />
         <Label x:Name="label1_Copy2" Content="Sĩ  số:" HorizontalAlignment="Left" Margin="67,189,0,0" VerticalAlignment="Top" FontSize="11" Height="25" Width="40" RenderTransformOrigin="0.5,0.5"/>
         <TextBox  PreviewTextInput="txtsiso_PreviewTextInput" Text="{Binding SelectedItem.SiSo, ElementName=lsvLop, Mode=TwoWay}" x:Name="txtsiso" HorizontalAlignment="Left" Height="41" Margin="115,168,0,0" VerticalAlignment="Top" Width="85" />
         <Button x:Name="btnGVADD" HorizontalAlignment="Left" Margin="326,86,0,0" VerticalAlignment="Top" Width="43" Height="30" Click="btnGVADD_Click" />
         <Button x:Name="btnMHADD" HorizontalAlignment="Left" Margin="326,133,0,0" VerticalAlignment="Top" Width="43" Height="30" Click="btnMHADD_Click" />
         <Button x:Name="btnLOPADD"  HorizontalAlignment="Left" Margin="326,44,0,0" VerticalAlignment="Top" Width="43" Height="30" Click="btnLOPADD_Click" />
+        <Button x:Name="btnHome" Content="Back" HorizontalAlignment="Left" Margin="1056,182,0,0" VerticalAlignment="Top" Width="74" Height="30" Click="BtnHome_Click" />
     </Grid>
 </Window>

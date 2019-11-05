@@ -15,7 +15,7 @@
         xmlns:local="clr-namespace:QLSV"
         Loaded="Window_Loaded"
         mc:Ignorable="d"
-        Title="Sinh Viên" Height="718" Width="1232.237">
+        Title="Sinh Viên" Height="754" Width="1532.237" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,2,-2">
         <Grid.RowDefinitions>
             <RowDefinition Height="149*"></RowDefinition>
@@ -62,13 +62,19 @@
         </ScrollViewer>
         <Button  x:Name="btnAdd" Content="Thêm" HorizontalAlignment="Left" Margin="258,215,0,0" VerticalAlignment="Top" Width="75" Height="25" Click="btnAdd_Click"/>
         <Button x:Name="btnUpdate" Content="Cập Nhật" HorizontalAlignment="Left" Margin="356,215,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="-0.187,0.2" Height="25" Click="btnUpdate_Click"/>
-        <Button x:Name="btnDel" Content="Xóa" HorizontalAlignment="Left" Margin="487,215,0,0" VerticalAlignment="Top" Width="75" Height="25" Click="btnDel_Click"/>
+        <Button x:Name="btnDel"  Content="Xóa" HorizontalAlignment="Left" Margin="487,215,0,0" VerticalAlignment="Top" Width="75" Height="25" Click="btnDel_Click"/>
         <Button x:Name="btnRefresh" Content="Refresh" HorizontalAlignment="Left" Margin="585,215,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="-0.187,0.2" Height="25" Click="btnRefresh_Click"/>
         <GroupBox Header="Màn hình" HorizontalAlignment="Left" Height="248" Margin="753,21,0,0" VerticalAlignment="Top" Width="198"/>
         <Button x:Name="btnBaoCao" Content="Báo cáo" HorizontalAlignment="Left" Margin="767,69,0,0" VerticalAlignment="Top" Width="170" Height="25" Click="btnBaoCao_Click" />
-        <Button x:Name="btnDG" Content="Đánh giá" HorizontalAlignment="Left" Margin="767,112,0,0" VerticalAlignment="Top" Width="170" Height="25" Click="btnDG_Click" />
-        <Button x:Name="btnCT" Content="Phân công" HorizontalAlignment="Left" Margin="767,151,0,0" VerticalAlignment="Top" Width="170" Height="25" Click="btnCT_Click"/>
-        <Button x:Name="btnMH" Content="Môn học" HorizontalAlignment="Left" Margin="767,190,0,0" VerticalAlignment="Top" Width="170" Height="25" Click="btnMH_Click" />
-        <Button x:Name="btnGV" Content="Giảng viên" HorizontalAlignment="Left" Margin="767,232,0,0" VerticalAlignment="Top" Width="170" Height="25" Click="btnGV_Click" />
+
+        <Button x:Name="btnPL" Content="Phân lớp" HorizontalAlignment="Left" Margin="767,112,0,0" VerticalAlignment="Top" Width="170" Height="25" Click="BtnPL_Click" />
+        <Button x:Name="btnMH" Content="Môn học" HorizontalAlignment="Left" Margin="767,156,0,0" VerticalAlignment="Top" Width="170" Height="25" Click="btnMH_Click" />
+        <Button x:Name="btnGV" Content="Giảng viên" HorizontalAlignment="Left" Margin="767,198,0,0" VerticalAlignment="Top" Width="170" Height="25" Click="btnGV_Click" />
+
+        <GroupBox Header="Tìm kiếm&#xD;&#xA;" HorizontalAlignment="Left" Height="248" Margin="992,22,0,0" VerticalAlignment="Top" Width="348"/>
+        <TextBox x:Name="tbtk" SelectionChanged="Tbtk_SelectionChanged" HorizontalAlignment="Left" Height="34" Margin="1115,97,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="192"/>
+        <Label x:Name="label9_Copy" Content="Tìm tên:" HorizontalAlignment="Left" Margin="1024,116,0,0" VerticalAlignment="Top"  FontSize="11" Height="25" Width="51"/>
+        <TextBox x:Name="tbtkd" PreviewTextInput="NumberValidationTextBox" SelectionChanged="Tbtkd_SelectionChanged" HorizontalAlignment="Left" Height="34" Margin="1115,158,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="102"/>
+        <Label x:Name="label9_Copy1" Content="Tìm điểm thi:" HorizontalAlignment="Left" Margin="1025,176,0,0" VerticalAlignment="Top"  FontSize="11" Height="25" Width="78"/>
     </Grid>
 </Window>

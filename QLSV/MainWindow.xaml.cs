@@ -242,7 +242,8 @@ namespace QLSV
 
         private void btnBaoCao_Click(object sender, RoutedEventArgs e)
         {
-            BaoCao btnBao = new BaoCao();
+            BaoCaoSV btnBao = new BaoCaoSV();
+            Close();
             btnBao.Show();
         }
 
@@ -252,12 +253,7 @@ namespace QLSV
             btnDanhgia.Show();
         }
 
-        private void btnCT_Click(object sender, RoutedEventArgs e)
-        {
-            Phancong pc = new Phancong();
-            pc.Show();
-        }
-
+       
         private void btnMH_Click(object sender, RoutedEventArgs e)
         {
 
@@ -265,7 +261,9 @@ namespace QLSV
 
         private void btnGV_Click(object sender, RoutedEventArgs e)
         {
-
+            GiangVienDay gv = new GiangVienDay();
+            Close();
+            gv.Show();
         }
 
         public void Window_Loaded(object sender, RoutedEventArgs e)
@@ -342,6 +340,74 @@ namespace QLSV
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void BtnTK_Click(object sender, RoutedEventArgs e)
+        {
+            TiemKiem tk = new TiemKiem();
+            tk.Show();
+        }
+
+        private void BtnPL_Click(object sender, RoutedEventArgs e)
+        {
+            Phancong pc = new Phancong();
+            Close();
+            pc.Show();
+        }
+
+        private void Tbtk_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            using (var db = new CSDLQlsv())//connect database
+            {
+                var query = (from c in db.SinhViens
+                            where c.ten.StartsWith(tbtk.Text)
+                            select c).ToList();
+
+                lsvDSSV.ItemsSource = query;
+                var dslop = from lop in db.Lops
+                            select lop;
+                cbLop.ItemsSource = dslop.ToList();
+                cbLop.DisplayMemberPath = "tenLop";
+                cbLop.SelectedValuePath = "Id";
+                cbLop.SelectedIndex = 0;
+
+                var dsnganh = from nganh in db.Nganhs
+                              select nganh;
+                cbNganh.ItemsSource = dsnganh.ToList();
+                cbNganh.DisplayMemberPath = "tenNganh";
+                cbNganh.SelectedValuePath = "Id";
+                cbNganh.SelectedIndex = 0;
+
+            }
+
+            cbLop.Items.Refresh();
+            cbNganh.Items.Refresh();
+            lsvDSSV.Items.Refresh();
+           
+        }
+
+        private void Tbtkd_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
+            try
+            {
+                int tkd = int.Parse(tbtkd.Text);
+                using (var db = new CSDLQlsv())//connect database
+                {
+                    var query = (from c in db.SinhViens
+                                 where c.diemThi==(tkd)
+                                 select c).ToList();
+                    lsvDSSV.ItemsSource = query;
+
+                }
+                lsvDSSV.Items.Refresh();
+
+            }
+            catch
+            {
+                lsvDSSV.Items.Refresh();
+            }
+           
         }
     }
 }

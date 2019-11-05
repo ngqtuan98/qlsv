@@ -12,9 +12,7 @@ namespace QLSV.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public GiangVien()
         {
-            BaoCaos = new HashSet<BaoCao>();
             ChiTietGiangViens = new HashSet<ChiTietGiangVien>();
-            MonHocs = new HashSet<MonHoc>();
         }
 
         public int Id { get; set; }
@@ -22,12 +20,6 @@ namespace QLSV.Model
         public string tenGV { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BaoCao> BaoCaos { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietGiangVien> ChiTietGiangViens { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MonHoc> MonHocs { get; set; }
     }
 }
