@@ -16,6 +16,29 @@ namespace UnitTestQLSV
             Assert.IsTrue(r);
 
         }
+
+        [TestMethod]
+        public void CheckKhoangTrang()
+        {
+
+            Login lg = new Login();
+            var r = lg.KhoangTrang(" ");
+            Assert.IsTrue(r);
+
+           
+
+        }
+
+        [TestMethod]
+        public void CheckAccMoreThan6()
+        {
+
+            Login lg = new Login();
+            var r = lg.CheckAcc("12345");
+            Assert.IsFalse(r);
+
+        }
+
         [TestMethod]
         public void CheckPass()
         {
@@ -31,13 +54,6 @@ namespace UnitTestQLSV
 
             Login lg = new Login();
             var r = lg.hasSpecialChar("tuan2798");
-            Assert.IsFalse(r);
-
-        }
-        public void checkSpace()
-        {
-            Login lg = new Login();
-            var r = lg.KhoangTrang("tuan2798");
             Assert.IsFalse(r);
 
         }

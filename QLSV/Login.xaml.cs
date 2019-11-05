@@ -120,7 +120,6 @@ namespace QLSV
         public bool KhoangTrang(string input)
         {
 
-
             if (input.IndexOf(" ") != -1)
                 return true;
             else return false;
