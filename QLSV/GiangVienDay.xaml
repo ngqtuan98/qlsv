@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QLSV"
         mc:Ignorable="d"
+        Loaded="Window_Loaded"
         Title="GiangVien" Height="742.745" Width="675.542">
     <Grid>
         <Label x:Name="label1" Content="Tên GV:" HorizontalAlignment="Left" Margin="149,100,0,0" VerticalAlignment="Top" FontSize="11" Height="25" Width="66" RenderTransformOrigin="0.5,0.5">

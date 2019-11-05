@@ -116,5 +116,17 @@ namespace QLSV
             Close();
             mwd.Show();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            using (var db = new CSDLQlsv())//connect database
+            {
+
+
+                lsvGV.ItemsSource = db.GiangViens.ToList();
+
+            }
+            lsvGV.Items.Refresh();
+        }
     }
 }

@@ -33,7 +33,6 @@
         <TextBox  PreviewTextInput="txtsiso_PreviewTextInput" Text="{Binding SelectedItem.diemThi, ElementName=lsvBC, Mode=TwoWay}" x:Name="tbDT" HorizontalAlignment="Left" Height="41" Margin="115,168,0,0" VerticalAlignment="Top" Width="85" />
         <Button x:Name="btnGVADD" HorizontalAlignment="Left" Margin="326,86,0,0" VerticalAlignment="Top" Width="43" Height="30" Click="btnGVADD_Click" />
         <Button x:Name="btnMHADD" HorizontalAlignment="Left" Margin="326,133,0,0" VerticalAlignment="Top" Width="43" Height="30" Click="btnMHADD_Click" />
-        <Button x:Name="btnLOPADD"  HorizontalAlignment="Left" Margin="326,44,0,0" VerticalAlignment="Top" Width="43" Height="30" Click="btnLOPADD_Click" />
         <Button x:Name="btnHome" Content="Back" HorizontalAlignment="Left" Margin="1056,182,0,0" VerticalAlignment="Top" Width="74" Height="30" Click="BtnHome_Click" />
     </Grid>
 </Window>

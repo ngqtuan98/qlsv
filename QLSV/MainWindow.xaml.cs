@@ -342,11 +342,7 @@ namespace QLSV
             e.Handled = regex.IsMatch(e.Text);
         }
 
-        private void BtnTK_Click(object sender, RoutedEventArgs e)
-        {
-            TiemKiem tk = new TiemKiem();
-            tk.Show();
-        }
+       
 
         private void BtnPL_Click(object sender, RoutedEventArgs e)
         {

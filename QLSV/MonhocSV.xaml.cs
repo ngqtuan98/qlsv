@@ -48,7 +48,7 @@ namespace QLSV
         {
 
             int idcbnganh = int.Parse(cbNganh.SelectedValue.ToString());
-            
+
 
             try
             {
@@ -111,9 +111,9 @@ namespace QLSV
             {
                 using (var db = new CSDLQlsv())//connect database
                 {
-                    var updateLop = db.MonHocs.Find(idDG);//Tìm kiếm theo primary key
+                    var updateLop = db.MonHocs.Find(idDG);//Tìm kiếm theo primary kdsdsdey
                     updateLop.tenMH = tbMH.Text;
-                    updateLop.id_Nganh= int.Parse(cbNganh.SelectedValue.ToString());
+                    updateLop.id_Nganh = int.Parse(cbNganh.SelectedValue.ToString());
                     db.SaveChanges();
                     Clear();
                     MessageBox.Show("Dữ liệu đã dược cập nhật");
@@ -123,7 +123,7 @@ namespace QLSV
             }
             catch
             {
-                MessageBox.Show("Không nhập đúng theo yêu cầu", "Lỗi định dạng", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Không nhập đúng theo yêu cầu", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
         }
@@ -133,14 +133,14 @@ namespace QLSV
             using (var db = new CSDLQlsv())//connect database
             {
                 var dsn = from n in db.Nganhs
-                              select n;
+                          select n;
                 cbNganh.ItemsSource = dsn.ToList();
                 cbNganh.DisplayMemberPath = "tenNganh";
                 cbNganh.SelectedValuePath = "Id";
                 cbNganh.SelectedIndex = 0;
                 lsvMH.ItemsSource = db.MonHocs.ToList();
             }
-            lsvMH.Items.Refresh();  
+            lsvMH.Items.Refresh();
         }
         public void Clear()
         {
@@ -148,7 +148,7 @@ namespace QLSV
             tbID.Text = "";
         }
 
-       
+
         private void BtnHome_Click(object sender, RoutedEventArgs e)
         {
             Phancong mwd = new Phancong();
@@ -169,6 +169,15 @@ namespace QLSV
                 lsvMH.ItemsSource = db.MonHocs.ToList();
             }
             cbNganh.Items.Refresh();
+        }
+
+        
+
+        private void btnAddGV_Click_1(object sender, RoutedEventArgs e)
+        {
+            NganhHoc nh = new NganhHoc();
+            Close();
+            nh.Show();
         }
     }
 }
