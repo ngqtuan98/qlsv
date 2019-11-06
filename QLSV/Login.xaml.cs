@@ -36,11 +36,11 @@ namespace QLSV
 
         public void FLogin(string acc, string pass)
         {
-            if (CheckAcc(acc) == true && CheckPass(pass) == true)
+            if (CheckAcc(acc) == true && CheckPassLength(pass) == true)
             {
                 if (CheckStartWithSpecial(acc) == true && CheckStartWithNumber(acc) == true)
                 {
-                    if (checkNumber_Special_Upper(pass) == true)
+                    if (CheckPassNumber_Special_Upper(pass) == true)
                     {
                         if (KhoangTrang(tbAcc.Text) == false)
                         {
@@ -109,7 +109,7 @@ namespace QLSV
             else return false;
 
         }
-        public bool CheckPass(string Pass)
+        public bool CheckPassLength(string Pass)
         {
             var a = (Pass).Length;
             if (a >= 8 && a <= 20)
@@ -125,7 +125,7 @@ namespace QLSV
             else return false;
         }
 
-        public bool hasSpecialChar(string input)
+        public bool HasSpecialChar(string input)
         {
 
             string specialChar = @"\|!#$%&/()=?»«@£§€{}.-;'<>_,";
@@ -139,7 +139,10 @@ namespace QLSV
 
         }
 
-        public bool checkNumber_Special_Upper(string input)
+        
+
+
+        public bool CheckPassNumber_Special_Upper(string input)
         {
             int i = 0; int chu_so = 0; int ky_tu_dac_biet = 0;
             int l = input.Length;
@@ -162,7 +165,7 @@ namespace QLSV
             foreach (var item in specialChar)
             {
                 if (input.Contains(item))
-                ky_tu_dac_biet ++;
+                    ky_tu_dac_biet++;
             }
 
 
@@ -171,7 +174,7 @@ namespace QLSV
                 return true;
             }
             return false;
-        }
+        }       
 
     }
 }
