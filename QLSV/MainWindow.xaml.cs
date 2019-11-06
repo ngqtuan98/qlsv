@@ -54,10 +54,11 @@ namespace QLSV
 
             int idcbLop = int.Parse(cbLop.SelectedValue.ToString());
             int idcbNganh = int.Parse(cbNganh.SelectedValue.ToString());
-
+            int diemChuan = int.Parse(tbDC.Text);
+            int diemThi = int.Parse(tbDT.Text);
             try
             {
-                if (checkdiemthi() && checkdiemchuan() == true)
+                if (checkdiemthi(diemThi) && checkdiemchuan(diemChuan) == true)
                 {
                     using (var db = new CSDLQlsv())//connect database
                     {
@@ -108,7 +109,6 @@ namespace QLSV
             }
 
         }
-
         private void btnDel_Click(object sender, RoutedEventArgs e)
         {
             int idSV = int.Parse(tbId.Text);
@@ -140,15 +140,15 @@ namespace QLSV
             int idSV = int.Parse(tbId.Text);
             int idcbLop = int.Parse(cbLop.SelectedValue.ToString());
             int idcbNganh = int.Parse(cbNganh.SelectedValue.ToString());
+            int diemThi = int.Parse(tbDT.Text);
+            int diemChuan = int.Parse(tbDC.Text);
 
             try
             {
-                if (checkdiemthi() && checkdiemchuan() == true)
+                if (checkdiemthi(diemThi) && checkdiemchuan(diemChuan) == true)
                 {
                     using (var db = new CSDLQlsv())//connect database
                     {
-
-
                         var updateSV = db.SinhViens.Find(idSV);//Tìm kiếm theo primary key
                         updateSV.ten = tbTen.Text;
                         updateSV.MSSV = tbMSSV.Text;
@@ -307,11 +307,10 @@ namespace QLSV
             lsvDSSV.Items.Refresh();
         }
 
-        public bool checkdiemthi()
+        public bool checkdiemthi(int diemThi)
         {
 
-            int diemthi = int.Parse(tbDT.Text);
-            if (diemthi >= 0 && diemthi < 40)
+            if (diemThi >= 0 && diemThi < 40)
             {
                 return true;
             }
@@ -321,11 +320,10 @@ namespace QLSV
                 return false;
             }
         }
-        public bool checkdiemchuan()
+        public bool checkdiemchuan(int diemChuan)
         {
 
-            int diemthi = int.Parse(tbDT.Text);
-            if (diemthi >= 0 && diemthi < 40)
+            if (diemChuan >= 15)
             {
                 return true;
             }

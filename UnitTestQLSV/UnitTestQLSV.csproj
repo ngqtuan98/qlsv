@@ -54,6 +54,8 @@
   <ItemGroup>
     <Compile Include="UnitCheckLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitTestDiem.cs" />
+    <Compile Include="UnitTestLop.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

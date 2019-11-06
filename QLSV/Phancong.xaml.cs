@@ -229,6 +229,15 @@ namespace QLSV
             Close();
             mwd.Show();
         }
+        public bool Checksiso(int siso)
+
+        {
+            if (siso <= 40)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
 
