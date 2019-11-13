@@ -36,5 +36,15 @@ namespace UnitTestQLSV
             var r = dc.checkdiemthi(14);
             Assert.IsTrue(r);
         }
+
+        [TestMethod]
+        public void Checkdiemthiam()
+        {
+            MainWindow dc = new MainWindow();
+            var r = dc.checkdiemthi(-1);
+            Assert.IsFalse(r);
+        }
+
+
     }
 }

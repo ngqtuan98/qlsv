@@ -78,7 +78,7 @@ namespace UnitTestQLSV
         public void CheckKiTuDacBietODauRight()
         {
             Login lg = new Login();
-            var r = lg.CheckStartWithSpecial("trideptrai");
+            var r = lg.CheckStartWithSpecial("trideptrai#");
             Assert.IsTrue(r);
         }
 

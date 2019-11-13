@@ -403,6 +403,17 @@ namespace QLSV
             }
            
         }
+
+        public bool checkmasv(string MSSV)
+        {
+            var ms = MSSV.Length;
+           
+            if(ms == 10  )
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
           
